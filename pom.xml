@@ -1,0 +1,247 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.apache.james.mailets.Kwee</groupId>
+  <artifactId>spam-detection-james-mailet</artifactId>
+  <version>0.0.1</version>
+  <packaging>jar</packaging>
+
+  <name>Combined spam detection James Mailet</name>
+  <description>Custom Combined spam detection Mailet for Apache James</description>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java.version>11</java.version>
+    <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
+    <maven.jar.plugin.version>3.3.0</maven.jar.plugin.version>
+    <maven.surefire.plugin.version>3.2.2</maven.surefire.plugin.version>
+    <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
+    <org.slf4j.version>2.0.4</org.slf4j.version>
+    <james.version>3.8.2</james.version>
+    <testng.version>7.8.0</testng.version>
+    <mockito.core.version>5.6.0</mockito.core.version>
+    <apache.mime4j.core.version>0.8.10</apache.mime4j.core.version>
+    <jakarta.mail.version>2.0.1</jakarta.mail.version>   
+  </properties>
+
+  <dependencies>
+    <!-- Apache James Mailet API -->
+    <dependency>
+      <groupId>org.apache.james</groupId>
+      <artifactId>apache-mailet-api</artifactId>
+      <version>${james.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.james</groupId>
+      <artifactId>james-server-core</artifactId>
+      <version>${james.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.james</groupId>
+      <artifactId>apache-mailet-base</artifactId>
+      <version>${james.version}</version>
+      <scope>compile</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>dnsjava</groupId>
+      <artifactId>dnsjava</artifactId>
+      <version>3.5.2</version> <!-- Of nieuwere versie die je omgeving ondersteunt -->
+    </dependency>
+    
+    <!-- Caching -->
+    <dependency>
+        <groupId>com.github.ben-manes.caffeine</groupId>
+        <artifactId>caffeine</artifactId>
+        <version>3.1.8</version>
+    </dependency>
+    
+    <!-- Logging -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${org.slf4j.version}</version>
+    </dependency>
+      
+    <!-- TestNG with JUnit exclusion -->
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>${testng.version}</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>junit</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!-- Mockito -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>${mockito.core.version}</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <!-- Apache James test utilities with JUnit exclusions -->
+    <dependency>
+      <groupId>org.apache.james</groupId>
+      <artifactId>james-server-util</artifactId>
+      <version>${james.version}</version>
+      <classifier>tests</classifier>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.junit.*</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.james</groupId>
+      <artifactId>apache-mime4j-core</artifactId>
+      <version>${apache.mime4j.core.version}</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.sun.mail</groupId>
+      <artifactId>jakarta.mail</artifactId>
+      <version>${jakarta.mail.version}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.james</groupId>
+      <artifactId>james-server-testing</artifactId>
+      <version>${james.version}</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.junit.jupiter</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.junit.vintage</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>junit</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.james</groupId>
+      <artifactId>james-core</artifactId>
+      <version>${james.version}</version>
+    </dependency>
+  </dependencies>       
+   
+  <build>
+    <plugins>
+      <!-- Java compiler plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven.compiler.plugin.version}</version>
+        <configuration>
+          <release>${java.version}</release>
+          <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+      </plugin>
+
+      <!-- JAR packaging plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>${maven.jar.plugin.version}</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>${maven.resources.plugin.version}</version>
+      </plugin>
+      
+      <!-- Configured Surefire Plugin for TestNG -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven.surefire.plugin.version}</version>
+        <configuration>
+          <skipTests>false</skipTests>
+          <properties>
+            <property>
+              <name>usedefaultlisteners</name>
+              <value>false</value>
+            </property>
+          </properties>
+          <suiteXmlFiles>
+            <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+          </suiteXmlFiles>
+          <dependenciesToIgnore>
+            <dependency>junit:junit</dependency>
+            <dependency>org.junit.jupiter:*</dependency>
+            <dependency>org.junit.vintage:*</dependency>
+          </dependenciesToIgnore>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.maven.surefire</groupId>
+            <artifactId>surefire-testng</artifactId>
+            <version>${maven.surefire.plugin.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+    </plugins>
+  </build>
+
+  <repositories>
+    <repository>
+      <id>central</id>
+      <url>https://repo.maven.apache.org/maven2</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+      
+    <repository>
+      <id>apache.snapshots</id>
+      <name>Apache Snapshot Repository</name>
+      <url>https://repository.apache.org/snapshots</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+  
+  <distributionManagement>
+    <!-- Upload to Github v-->
+    <repository>
+      <id>github</id>
+      <name>GitHub Packages</name>
+      <url>https://maven.pkg.github.com/RSHKwee/JamesKPNVeiligMaillet</url>
+    </repository>
+    <!-- Upload to Github ^-->
+  </distributionManagement>
+</project>
