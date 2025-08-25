@@ -1,0 +1,658 @@
+Delivered-To: example@gmail.com
+Received: by 2002:a05:7208:700b:b0:a6:644a:f8b9 with SMTP id n11csp4442597rba;
+        Sat, 23 Aug 2025 04:06:01 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFfoaNodp0AEX7WDMt+1Jsl40ieoTVddjuoWspT9uaIPmlvVB/hSLdB1MGRDYJgN4johTTu
+X-Received: by 2002:ac8:7d49:0:b0:4b0:7c27:a023 with SMTP id d75a77b69052e-4b2aaaa5c2fmr73106621cf.35.1755947161193;
+        Sat, 23 Aug 2025 04:06:01 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1755947161; cv=none;
+        d=google.com; s=arc-20240605;
+        b=WM4hsNMv0K1cZFZKmWCj0+WfJIMuXkXR8ausgiXi7Aj2xFsHxTeH4bzPNycB6+AKUd
+         3PwdrH22lvlqNju1dsvEv22yLPB7l9acemfaQPbZYvXnoDeVmaE8JKhvjC0VqTQosB6p
+         ee39nOaNpp6Yn2mRmmzJiYM8LcngkHSAYfrKvui82ciiwJui1kqqudQR3v/maW9ntycn
+         NjGgrdW6FWvQrSptqVF8bxnQbkC7mmcWZ4IjaoeTCOg9iYeoQr8nfpXALAtSLiCeDruZ
+         sD7LVN+lO1ALIwqa3B9qV9Q6wcuVoi8PMfiF60OJNgbexNOpJSZlbrTHaS/FyTT5fygF
+         f6+w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=message-id:date:list-unsubscribe:subject:to:from:mime-version
+         :dkim-signature;
+        bh=7NQgl6kd80EEvfot1+D5ynXkuq3md/Sc0nWScGHE5cw=;
+        fh=/ewnXd3rgw5jMYF1sK9U578ir8ZormtsbijP56b0yRk=;
+        b=ZBqo8qQIAuCQ60JteB8S3gWIwDqZmnI60IcKNpqGCgHXNTPzIBMCU/iGLdm9m27n9M
+         56Z1h1S7Cf1nKlsET14Fr4cPkmkpL25Y+l8oGgS+fqhH0yTeO+lD96dQLA3+e4keG9nG
+         9VPRgB6Py8w8U63vPX3fVCkHW284w5giUSzp/KDqoQwB7wfyMjMQw3JEXSTja65Gh4h+
+         jbmmQM3uVbHhHCh6jCF6mxXzBbyWN63bf7EMV04jXVOwwW5lv53TnnpvQPbxgrGKWJI5
+         Z60IvMGwINs6XgSrvUiL0oqIuwo7IgFpkhQfyBzKD+oz8M/2TDayB2gjCgOujZHBZV41
+         5TbQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@quora.com header.s=pigeon header.b=qqb+V5+H;
+       spf=pass (google.com: domain of noreply@quora.com designates 52.203.187.30 as permitted sender) smtp.mailfrom=noreply@quora.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=quora.com
+Return-Path: <noreply@quora.com>
+Received: from o22.pigeon.quora.com (o22.pigeon.quora.com. [52.203.187.30])
+        by mx.google.com with ESMTPS id af79cd13be357-7ebf1bbe649si75262085a.410.2025.08.23.04.06.01
+        for <example@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 23 Aug 2025 04:06:01 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@quora.com designates 52.203.187.30 as permitted sender) client-ip=52.203.187.30;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@quora.com header.s=pigeon header.b=qqb+V5+H;
+       spf=pass (google.com: domain of noreply@quora.com designates 52.203.187.30 as permitted sender) smtp.mailfrom=noreply@quora.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=quora.com
+Received: 
+	by pigeon-at-10053 (OpenSMTPD) with ESMTP id 01d8f11d
+	for <example@gmail.com>;
+	Sat, 23 Aug 2025 11:05:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quora.com; h=
+	content-type:mime-version:from:to:subject:list-unsubscribe:date
+	:message-id; s=pigeon; bh=7NQgl6kd80EEvfot1+D5ynXkuq3md/Sc0nWScG
+	HE5cw=; b=qqb+V5+HHe+0MM1MYlHkXJUPoTCBeuHAlPEqFr/EOJOlprCSA5PMeo
+	B5puFApLGI1ApoY6PyN4O/R5NR//ujb58m+I8P2qoei0PZToLV9DjO/bjEYTH6DT
+	D6rUNuxOIO6ux1pG1DNfBZ0aasm7TOSWO/2G2eu7nuDh4A8sv1hOGW92UV0OTSEW
+	5FJdLvrk+hrqUseF5odPpEZU+NqzXl4fDatoayoBY8eF4lXJd8KOkA+m2F+BHfIP
+	fuMLomEL5DWLD3Tng+pf7OyX6kf9U8Jm0t0fVYRlTOw9YBdMhSNxL6LZW8xnwJde
+	2UihtwY44ci+ixuLihXsgh3Psqm4SagQ==
+Content-Type: multipart/alternative;
+ boundary="===============5844574417521964575=="
+MIME-Version: 1.0
+From: Quora - Vorgeschlagene Salons <fotowelt-space@quora.com>
+To: example@gmail.com
+Subject: =?utf-8?q?Um_einem_Umzug_ins_Pflegeheim_zu_entgehen=2C_haben_14_=C3=A4ltere_?=
+ =?utf-8?q?Menschen_ein_gro=C3=9Fes_Haus_gemietet=2C_in_dem_sie_alle_zusamme?=
+ =?utf-8?q?nleben=2E_Da_sie_nicht_allein_in=2E=2E=2E?=
+List-Unsubscribe: <https://de.quora.com/email_optout/qemail_unsubscribe?email_track_id=b977d8a465974521a984106e8a840a59&ish=1&t=1755947159740915&token=4ad484776c0f6b2c66dfd9ada3a21e8801f90ad69c179444bef7ab94b07a47d0980764e3194b3bd0836615014c64dee309320b9cce35cbb07a32fa85bea62706&type=153&uid=189974078>
+X-CID: r_zrmVHY1WeHpe6OQbjAjExr1UCtOYHn9Ajj607jQAFMiZ62dauCdX-O2zbNExQgMRySUGmg0J4p7imKlpJXurS_59_eK9pCcA7ZVrFBEFjvcC_S4y5HfHcb8br5OMz0hv-lnBIA3lGj3wABAgA=
+Date: Sat, 23 Aug 2025 11:05:59 +0000
+Message-ID: <r_zrmVHY1WeHpe6OQbjAjExr1UCtOYHn9Ajj607jQAFMiZ62dauCdX-O2zbNExQgMRySUGmg0J4p7imKlpJXurS_59_eK9pCcA7ZVrFBEFjvcC_S4y5HfHcb8br5OMz0hv-lnBIA3lGj3wABAgA=@t1.msgid.quoramail.com>
+X-SMTPAPI: =?utf-8?q?=7B=22unique=5Fargs=22=3A_=7B=22Message-ID=22=3A_=22=3Cr=5FzrmVHY1?=
+ =?utf-8?q?WeHpe6OQbjAjExr1UCtOYHn9Ajj607jQAFMiZ62dauCdX-O2zbNExQgMRySUGmg0J?=
+ =?utf-8?q?4p7imKlpJXurS=5F59=5FeK9pCcA7ZVrFBEFjvcC=5FS4y5HfHcb8br5OMz0hv-ln?=
+ =?utf-8?q?BIA3lGj3wABAgA=3D=40t1=2Emsgid=2Equoramail=2Ecom=3E=22=2C_=22acco?=
+ =?utf-8?q?unt=22=3A_=22notif=22=2C_=22email=5Ftype=22=3A_153=2C_=22ip=5Fpoo?=
+ =?utf-8?q?l=22=3A_=22notif=22=2C_=22X-QMSG=22=3A_=221n1n=5FMs-gyWklGwVudodG?=
+ =?utf-8?q?-8Nf2oR5ARHZzRKSNe7q9=5FI=5Fjs4=5FK0TsOIHn51DrdZ2a4i=5F4TcAPHKZYM?=
+ =?utf-8?q?I=5Ff2-DW5NHCOJG5u8RVCWTOyLhSN0gLtwDpaV2qFKR3ftxhihklqRJezUuGNdt?=
+ =?utf-8?q?=5FJ=5Fxf458cb19JNuJ62rmTdRwTdZQgUUu9F1jGvm3O9sdxILPzTHWiSdeX82zY?=
+ =?utf-8?q?=5FYl807T1kj4OpvGuCj16mPbsOrhXticq9C7Pc4KaVCSF6yYr9GpUFyIo3urTolm?=
+ =?utf-8?q?jG2tGKVZN33mgAcROVAeWgon1rL43FQTBlG02muWhNlwq8c3q1ZOGJh5OUDUtmpCh?=
+ =?utf-8?q?O6S=5FREdlEcsAbfnRp6AEVw6GomKOxpCa1reXDAasoJjZn1u5O1yPbiZQPZE-hDx?=
+ =?utf-8?q?kW=5Fh7DJ=5FHSmCiDh-U=5FrGxWOb3W0StxDbE-W6aDA9cyI8bRmg3CKbNUQVudZ?=
+ =?utf-8?q?WKcj3NBIjCDdlzw=5FhR7Ov7j2-Nk1vPN3tXxvqDA7RAAECAA=3D=3D=22=7D=2C_?=
+ =?utf-8?q?=22category=22=3A_=5B=22account=5Fnotif=22=2C_=22email=5Ftype=5F1?=
+ =?utf-8?q?53=22=2C_=22ip=5Fpool=5Fnotif=22=5D=2C_=22filters=22=3A_=7B=22byp?=
+ =?utf-8?q?ass=5Flist=5Fmanagement=22=3A_=7B=22settings=22=3A_=7B=22enable?=
+ =?utf-8?q?=22=3A_1=7D=7D=7D=2C_=22ip=5Fpool=22=3A_=22notif=22=7D?=
+X-QMSG: =?utf-8?q?1n1n=5FMs-gyWklGwVudodG-8Nf2oR5ARHZzRKSNe7q9=5FI=5Fjs4=5FK0TsOIHn5?=
+ =?utf-8?q?1DrdZ2a4i=5F4TcAPHKZYMI=5Ff2-DW5NHCOJG5u8RVCWTOyLhSN0gLtwDpaV2qFK?=
+ =?utf-8?q?R3ftxhihklqRJezUuGNdt=5FJ=5Fxf458cb19JNuJ62rmTdRwTdZQgUUu9F1jGvm3?=
+ =?utf-8?q?O9sdxILPzTHWiSdeX82zY=5FYl807T1kj4OpvGuCj16mPbsOrhXticq9C7Pc4KaVC?=
+ =?utf-8?q?SF6yYr9GpUFyIo3urTolmjG2tGKVZN33mgAcROVAeWgon1rL43FQTBlG02muWhNlw?=
+ =?utf-8?q?q8c3q1ZOGJh5OUDUtmpChO6S=5FREdlEcsAbfnRp6AEVw6GomKOxpCa1reXDAasoJ?=
+ =?utf-8?q?jZn1u5O1yPbiZQPZE-hDxkW=5Fh7DJ=5FHSmCiDh-U=5FrGxWOb3W0StxDbE-W6aD?=
+ =?utf-8?q?A9cyI8bRmg3CKbNUQVudZWKcj3NBIjCDdlzw=5FhR7Ov7j2-Nk1vPN3tXxvqDA7RA?=
+ =?utf-8?q?AECAA=3D=3D?=
+
+--===============5844574417521964575==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+
+Beitr=C3=A4ge aus Fotowelt, die im Trend liegen
+
+-----
+
+
+
+Um einem Umzug ins Pflegeheim zu entgehen, haben 14 =C3=A4ltere Menschen ei=
+n gro=C3=9Fes Haus gemietet, in dem sie alle zusammenleben.
+Da sie nicht allein in einem Pflegeheim alt werden wollten, kauften vierzeh=
+...
+
+
+
+Mehr lesen: https://de.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMz=
+MsICJoYXNoIjogIjB8MXwxMHwyMTkxOTE5OTYifQ%3D%3D&al_pri=3D0&aoid=3D8bvInJ9eIc=
+j&aoty=3D4&aty=3D4&cp=3D1&ct=3D1755947159711210&et=3D153&id=3Dba78ef0675dd4=
+c2c8290f441924e0d9a&notif_type=3D508&request_id=3D508&snid=3D89660261886&sr=
+c=3D1&st=3D1755947159713107&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3=
+E%2C+197247481)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+200518393)%2C+(%3=
+Cstory_types.tribe_post%3A+10%3E%2C+200661431)%5D&tribe_item_ids=3DVOOl8WXq=
+fd8%7CVUxQweyiWs4%7CRuJemStwIuF&uid=3DzDMbfGON8KH&v=3D0
+
+-----
+
+
+Rezepte &Tipps
+
+Jahre sp=C3=A4ter gab Sophia Loren gegen=C3=BCber Entertainment Weekly ihre=
+ eigene Erkl=C3=A4rung f=C3=BCr ihren Blick auf dem legend=C3=A4ren Foto: =
+=E2=80=9EIch hatte das Gef=C3=BChl, ihre Brustwarzen w=C3=BCrden auf meinen=
+ Te...
+
+
+
+Mehr lesen: https://de.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMz=
+MsICJoYXNoIjogIjB8MnwxMHwyMjUzNjY4OTAifQ%3D%3D&al_pri=3D0&aoid=3DMdJdOoEjYx=
+8&aoty=3D4&aty=3D4&cp=3D2&ct=3D1755947159711210&et=3D153&id=3Dba78ef0675dd4=
+c2c8290f441924e0d9a&notif_type=3D508&request_id=3D508&snid=3D89660261886&sr=
+c=3D1&st=3D1755947159713107&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3=
+E%2C+197247481)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+200518393)%2C+(%3=
+Cstory_types.tribe_post%3A+10%3E%2C+200661431)%5D&tribe_item_ids=3DVOOl8WXq=
+fd8%7CVUxQweyiWs4%7CRuJemStwIuF&uid=3DzDMbfGON8KH&v=3D0
+
+-----
+
+
+A Highland New Guinean is shocked to see a white person for the first time =
+in his life. Before 1930, Highlanders thought they were the only living peo=
+ple in the world.
+Ein Bewohner der Hochlandregion ...
+
+
+
+Mehr lesen: https://de.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMz=
+MsICJoYXNoIjogIjB8M3wxMHwyMjU2NDYwMDYifQ%3D%3D&al_pri=3D0&aoid=3DRJq9p9dSQP=
+u&aoty=3D4&aty=3D4&cp=3D3&ct=3D1755947159711210&et=3D153&id=3Dba78ef0675dd4=
+c2c8290f441924e0d9a&notif_type=3D508&request_id=3D508&snid=3D89660261886&sr=
+c=3D1&st=3D1755947159713107&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3=
+E%2C+197247481)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+200518393)%2C+(%3=
+Cstory_types.tribe_post%3A+10%3E%2C+200661431)%5D&tribe_item_ids=3DVOOl8WXq=
+fd8%7CVUxQweyiWs4%7CRuJemStwIuF&uid=3DzDMbfGON8KH&v=3D0
+
+-----
+
+-----
+
+Um zu kontrollieren, welche E-Mails wir Dir senden, besuche: https://de.quo=
+ra.com/qemail/track_click?aoid&aoty=3D14&aty=3D4&cp=3D0&ct=3D17559471597112=
+10&et=3D153&id=3Dba78ef0675dd4c2c8290f441924e0d9a&notif_type=3D508&request_=
+id=3D508&snid=3D89660261886&src=3D1&st=3D1755947159713107&stories=3D%5B(%3C=
+story_types.tribe_post%3A+10%3E%2C+197247481)%2C+(%3Cstory_types.tribe_post=
+%3A+10%3E%2C+200518393)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+200661431=
+)%5D&tribe_item_ids=3DVOOl8WXqfd8%7CVUxQweyiWs4%7CRuJemStwIuF&uid=3DzDMbfGO=
+N8KH&v=3D0
+
+Um diese Art von E-Mails nicht mehr zu erhalten, besuche: https://de.quora.=
+com/email_optout/qemail_unsubscribe?email_track_id=3Dba78ef0675dd4c2c8290f4=
+41924e0d9a&t=3D1755947159742770&token=3D6ef40dc62995ab08f9c8ac491ca9b534fb4=
+ac7da5028198106ce842a0b5f14fd187e3db46cc87c5f8b078bde3ccae399eec692824fa7b3=
+2223ce77aebcc62394&type=3D153&uid=3D189974078
+--===============5844574417521964575==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+
+<!doctype html><html lang=3D"de" xmlns=3D"http://www.w3.org/1999/xhtml" xml=
+ns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:v=3D"urn:schemas-mic=
+rosoft-com:vml"><head><title>Um einem Umzug ins Pflegeheim zu entgehen, hab=
+en 14 =C3=A4ltere Menschen ein gro=C3=9Fes Haus gemietet, in dem sie alle z=
+usammenleben. Da sie nicht allein in...</title><!--[if !mso]><!--><meta con=
+tent=3D"IE=3Dedge" http-equiv=3D"X-UA-Compatible"><!--<![endif]--><meta con=
+tent=3D"text/html; charset=3DUTF-8" http-equiv=3D"Content-Type"><meta conte=
+nt=3D"width=3Ddevice-width,initial-scale=3D1" name=3D"viewport"><style>#out=
+look a { padding:0; }
+          body { margin:0;padding:0;-webkit-text-size-adjust:100%;-ms-text-=
+size-adjust:100%; }
+          table, td { border-collapse:collapse;mso-table-lspace:0pt;mso-tab=
+le-rspace:0pt; }
+          img { border:0;height:auto;line-height:100%; outline:none;text-de=
+coration:none;-ms-interpolation-mode:bicubic; }
+          p { display:block;margin:13px 0; }</style><!--[if mso]>
+        <noscript>
+        <xml>
+        <o:OfficeDocumentSettings>
+          <o:AllowPNG/>
+          <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+        </xml>
+        </noscript>
+        <![endif]--><!--[if lte mso 11]>
+        <style type=3D"text/css">
+          .mj-outlook-group-fix { width:100% !important; }
+        </style>
+        <![endif]--><style>@media only screen and (min-width:480px) {
+        .mj-column-per-100 { width:100% !important; max-width: 100%; }
+      }</style><style media=3D"screen and (min-width:480px)">.moz-text-html=
+ .mj-column-per-100 { width:100% !important; max-width: 100%; }</style><sty=
+le>@media only screen and (max-width:480px) {
+      table.mj-full-width-mobile { width: 100% !important; }
+      td.mj-full-width-mobile { width: auto !important; }
+    }</style></head><body style=3D"word-spacing:normal;"><div style=3D"disp=
+lay:none;font-size:1px;color:#ffffff;line-height:1px;max-height:0px;max-wid=
+th:0px;opacity:0;overflow:hidden;">Um einem Umzug ins Pflegeheim zu entgehe=
+n, haben 14 =C3=A4ltere Menschen ein gro=C3=9Fes Haus gemietet, in dem sie =
+alle zusammenleben. Da sie nicht allein in einem Pflegeheim alt werden woll=
+ten, kauften vierzeh</div><div style=3D"max-width: 525px; margin: 0 auto; t=
+ext-align: center; padding: 0 4px 16px;" class=3D"emailBody"><table border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"w=
+idth:100%;" align=3D"center"><tbody><tr><td><!--[if mso | IE]><table align=
+=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" rol=
+e=3D"presentation" style=3D"width:525px;" width=3D"525" ><tr><td style=3D"l=
+ine-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--><di=
+v style=3D"margin:0px auto;max-width:525px;"><table border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"width:100%;" align=
+=3D"center"><tbody><tr><td style=3D"direction:ltr;font-size:0px;padding:0px=
+;padding-bottom:24px;padding-top:16px;text-align:center;"><!--[if mso | IE]=
+><table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D=
+"0"><tr><td class=3D"centered-group-outlook" style=3D"width:525px;" ><![end=
+if]--><div style=3D"font-size: 0; line-height: 0; display: inline-block; wi=
+dth: 100%; direction: ltr; text-align: center;" class=3D"mj-column-per-100 =
+mj-outlook-group-fix centered-group"><!--[if mso | IE]><table border=3D"0" =
+cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" ><tr><td style=3D=
+"vertical-align:top;width:525px;" ><![endif]--><div style=3D"font-size:0px;=
+text-align:left;direction:ltr;display:inline-block;vertical-align:top;width=
+:100%;" class=3D"mj-column-per-100 mj-outlook-group-fix"><table border=3D"0=
+" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"vertic=
+al-align:top;" width=3D"100%"><tbody><tr><td style=3D"font-size:0px;padding=
+:0px;word-break:break-word;"><div style=3D"height:16px;line-height:16px;">=
+=E2=80=8A</div></td></tr><tr><td style=3D"font-size:0px;padding:0px;word-br=
+eak:break-word;" align=3D"center" class=3D"of-contain"><table border=3D"0" =
+cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"border-c=
+ollapse:collapse;border-spacing:0px;"><tbody><tr><td style=3D"width:1px;"><=
+img alt height=3D"1" src=3D"https://de.quora.com/qemail/mark_read?ct=3D1755=
+947159711210&et=3D153&id=3Dba78ef0675dd4c2c8290f441924e0d9a&notif_type=3D50=
+8&request_id=3D508&snid=3D89660261886&src=3D1&st=3D1755947159713107&stories=
+=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+197247481)%2C+(%3Cstory_types.=
+tribe_post%3A+10%3E%2C+200518393)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C=
++200661431)%5D&tribe_item_ids=3DVOOl8WXqfd8%7CVUxQweyiWs4%7CRuJemStwIuF&uid=
+=3DzDMbfGON8KH&v=3D0" style=3D"object-fit: contain; border: 0; display: blo=
+ck; outline: none; text-decoration: none; height: 1px; width: 100%; font-si=
+ze: 13px;" width=3D"1"></td></tr></tbody></table></td></tr><tr><td style=3D=
+"font-size:0px;padding:0px;word-break:break-word;" align=3D"left"><div styl=
+e=3D"font-family:system-ui, Segoe UI, sans-serif;font-size:15px;line-height=
+:1.6;text-align:left;color:#333333;"><a href=3D"https://de.quora.com/qemail=
+/track_click?aoid&aoty=3D7&aty=3D4&cp=3D12&ct=3D1755947159711210&et=3D153&i=
+d=3Dba78ef0675dd4c2c8290f441924e0d9a&notif_type=3D508&request_id=3D508&snid=
+=3D89660261886&src=3D1&st=3D1755947159713107&stories=3D%5B(%3Cstory_types.t=
+ribe_post%3A+10%3E%2C+197247481)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+=
+200518393)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+200661431)%5D&tribe_it=
+em_ids=3DVOOl8WXqfd8%7CVUxQweyiWs4%7CRuJemStwIuF&uid=3DzDMbfGON8KH&v=3D0" s=
+tyle=3D"text-decoration:none"><div style=3D"width:100%;height:100px;overflo=
+w:hidden;border-radius:4px"><img alt=3D"Fotowelt" height=3D"100px" src=3D"h=
+ttps://qsf.fs.quoracdn.net/-4-ans_frontend_assets.images.tribes.defaults.sp=
+ace_banner_gray.png-26-1f9c20337a735e4b.png" style=3D"text-decoration:none;=
+display:block;border:0;outline:none;width:100%;height:100px;float:none;padd=
+ing:0;margin:auto;object-fit:cover;background-size:cover" align=3D"none" wi=
+dth=3D"100%"></div><div style=3D"padding-top:16px;padding-bottom:8px"><tabl=
+e><tr><td style=3D"line-height:1" valign=3D"top" width=3D"40"><img alt heig=
+ht=3D"50" src=3D"https://qph.fs.quoracdn.net/main-thumb-ti-1647913-100-jniv=
+dkfjwctcpknlqplxjmaebkkvdouz.jpeg" style=3D"border-radius:100%;vertical-ali=
+gn:center;text-decoration:none;display:block;border:0;outline:none;width:50=
+px;height:50px;float:none;padding:0;margin:auto" align=3D"none" width=3D"50=
+"></td><td style=3D"padding-left:8px" valign=3D"top"><div style=3D"padding:=
+0;padding-bottom:4px" dir=3D"ltr" class=3D"text-pass-color-to-links"><p sty=
+le=3D"font-family: system-ui, Segoe UI, sans-serif; font-weight: bold; font=
+-size: 19px; line-height: 1.2; color: #333333; text-align: left; margin: 0;=
+">Fotowelt<span style=3D"color:gray;font-weight:normal;font-size:13px"><spa=
+n style=3D"color:#939598"> =E2=80=A2 </span>2.327 Follower</span></p></div>=
+<div style=3D"padding:0;padding-bottom:4px" dir=3D"ltr" class=3D"text-pass-=
+color-to-links"><p style=3D"font-family: system-ui, Segoe UI, sans-serif; f=
+ont-size: 13px; line-height: 1.2; color: #333333; text-align: left; margin:=
+ 0;">Fotografie, mobile Fotografie und alles, was mit Fotografie zu tun hat=
+</p></div></td></tr></table></div></a></div></td></tr><tr><td style=3D"font=
+-size:0px;padding:0px;padding-top:0px;padding-bottom:16px;word-break:break-=
+word;" align=3D"center"><p style=3D"border-top: solid 0.5px #dee0e1; font-s=
+ize: 1px; width: 100%; margin: 0;"></p><!--[if mso | IE]><table align=3D"ce=
+nter" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"border-top:=
+solid 0.5px #dee0e1;font-size:1px;margin:0px auto;width:525px;" role=3D"pre=
+sentation" width=3D"525px" ><tr><td style=3D"height:0;line-height:0;"> &nbs=
+p;
+</td></tr></table><![endif]--></td></tr><tr><td style=3D"font-size:0px;padd=
+ing:0px;word-break:break-word;"><div style=3D"height:8px;line-height:8px;">=
+=E2=80=8A</div></td></tr><tr><td style=3D"font-size:0px;padding:0px;padding=
+-bottom:8px;word-break:break-word;" align=3D"left" class=3D"text-pass-color=
+-to-links"><div style=3D"font-family:system-ui, Segoe UI, sans-serif;font-s=
+ize:19px;font-weight:700;letter-spacing:-0.5px;line-height:1.4;text-align:l=
+eft;color:#333333;"><a href=3D"https://de.quora.com/qemail/track_click?al_i=
+mp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8MXwxMHwyMTkxOTE5OTYifQ%3D%3D&al_pri=3D=
+0&aoid=3D8bvInJ9eIcj&aoty=3D4&aty=3D4&cp=3D1&ct=3D1755947159711210&et=3D153=
+&id=3Dba78ef0675dd4c2c8290f441924e0d9a&notif_type=3D508&request_id=3D508&sn=
+id=3D89660261886&src=3D1&st=3D1755947159713107&stories=3D%5B(%3Cstory_types=
+.tribe_post%3A+10%3E%2C+197247481)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2=
+C+200518393)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+200661431)%5D&tribe_=
+item_ids=3DVOOl8WXqfd8%7CVUxQweyiWs4%7CRuJemStwIuF&uid=3DzDMbfGON8KH&v=3D0"=
+ style=3D"text-decoration: none; color: inherit;"><span style=3D"color:#333=
+333"><span></span></span></a></div></td></tr><tr><td style=3D"font-size:0px=
+;padding:0px;word-break:break-word;" align=3D"left"><div style=3D"font-fami=
+ly:system-ui, Segoe UI, sans-serif;font-size:15px;line-height:1.6;text-alig=
+n:left;color:#333333;"><div style=3D"float:left;padding-bottom:8px"><table>=
+<tr><td style=3D"line-height:1" valign=3D"top" width=3D"40"><a href=3D"http=
+s://de.quora.com/qemail/track_click?aoid=3DMUsEQ87AuvY&aoty=3D3&aty=3D4&cp=
+=3D1&ct=3D1755947159711210&et=3D153&id=3Dba78ef0675dd4c2c8290f441924e0d9a&n=
+otif_type=3D508&request_id=3D508&snid=3D89660261886&src=3D1&st=3D1755947159=
+713107&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+197247481)%2C+(%=
+3Cstory_types.tribe_post%3A+10%3E%2C+200518393)%2C+(%3Cstory_types.tribe_po=
+st%3A+10%3E%2C+200661431)%5D&tribe_item_ids=3DVOOl8WXqfd8%7CVUxQweyiWs4%7CR=
+uJemStwIuF&uid=3DzDMbfGON8KH&v=3D0" style=3D"text-decoration:underline"><im=
+g alt=3D"Michael Tsil" height=3D"40" src=3D"https://qph.fs.quoracdn.net/mai=
+n-thumb-891866989-50-zwplynlmsfltuxdonfsscblsmjbvftco.jpeg" style=3D"border=
+-radius:100%;text-decoration:none;display:block;border:0;outline:none;width=
+:40px;height:40px;float:none;padding:0;margin:auto" align=3D"none" width=3D=
+"40"></a></td><td width=3D"4"></td><td valign=3D"top"><div style=3D"padding=
+:0;padding-bottom:4px" dir=3D"ltr" class=3D"text-pass-color-to-links"><p st=
+yle=3D"font-family: system-ui, Segoe UI, sans-serif; font-size: 15px; line-=
+height: 1.2; color: #333333; text-align: left; margin: 0;"><a href=3D"https=
+://de.quora.com/qemail/track_click?aoid=3DMUsEQ87AuvY&aoty=3D3&aty=3D4&cp=
+=3D1&ct=3D1755947159711210&et=3D153&id=3Dba78ef0675dd4c2c8290f441924e0d9a&n=
+otif_type=3D508&request_id=3D508&snid=3D89660261886&src=3D1&st=3D1755947159=
+713107&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+197247481)%2C+(%=
+3Cstory_types.tribe_post%3A+10%3E%2C+200518393)%2C+(%3Cstory_types.tribe_po=
+st%3A+10%3E%2C+200661431)%5D&tribe_item_ids=3DVOOl8WXqfd8%7CVUxQweyiWs4%7CR=
+uJemStwIuF&uid=3DzDMbfGON8KH&v=3D0" style=3D"text-decoration: none; color: =
+inherit;"><span style=3D"color:#333333"><span style=3D"font-weight:700">Mic=
+hael Tsil</span></span></a><span>, Engineering</span></p></div><div style=
+=3D"padding:0" dir=3D"ltr" class=3D"text-pass-color-to-links"><p style=3D"f=
+ont-family: system-ui, Segoe UI, sans-serif; font-size: 13px; line-height: =
+1.2; color: #939598; text-align: left; margin: 0;"><a href=3D"https://de.qu=
+ora.com/qemail/track_click?aoid=3D8bvInJ9eIcj&aoty=3D4&aty=3D4&cp=3D1&ct=3D=
+1755947159711210&et=3D153&id=3Dba78ef0675dd4c2c8290f441924e0d9a&notif_type=
+=3D508&request_id=3D508&snid=3D89660261886&src=3D1&st=3D1755947159713107&st=
+ories=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+197247481)%2C+(%3Cstory_t=
+ypes.tribe_post%3A+10%3E%2C+200518393)%2C+(%3Cstory_types.tribe_post%3A+10%=
+3E%2C+200661431)%5D&tribe_item_ids=3DVOOl8WXqfd8%7CVUxQweyiWs4%7CRuJemStwIu=
+F&uid=3DzDMbfGON8KH&v=3D0" style=3D"text-decoration: none; color: inherit;"=
+><span style=3D"color:#636466">Ver=C3=B6ffentlicht 12. Apr.</span></a></p><=
+/div></td></tr></table></div></div></td></tr><tr><td style=3D"font-size:0px=
+;padding:0px;word-break:break-word;" align=3D"left"><div style=3D"font-fami=
+ly:system-ui, Segoe UI, sans-serif;font-size:15px;line-height:1.4;text-alig=
+n:left;color:#333333;"><a href=3D"https://de.quora.com/qemail/track_click?a=
+l_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8MXwxMHwyMTkxOTE5OTYifQ%3D%3D&al_pri=
+=3D0&aoid=3D8bvInJ9eIcj&aoty=3D4&aty=3D4&cp=3D1&ct=3D1755947159711210&et=3D=
+153&id=3Dba78ef0675dd4c2c8290f441924e0d9a&notif_type=3D508&request_id=3D508=
+&snid=3D89660261886&src=3D1&st=3D1755947159713107&stories=3D%5B(%3Cstory_ty=
+pes.tribe_post%3A+10%3E%2C+197247481)%2C+(%3Cstory_types.tribe_post%3A+10%3=
+E%2C+200518393)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+200661431)%5D&tri=
+be_item_ids=3DVOOl8WXqfd8%7CVUxQweyiWs4%7CRuJemStwIuF&uid=3DzDMbfGON8KH&v=
+=3D0" style=3D"text-decoration:none;color:#333333"><span style=3D"color:#33=
+3333"><img alt height=3D"auto" src=3D"https://qph.fs.quoracdn.net/main-qimg=
+-9fd307f7a3c434c8f1fd543a030c77d2" style=3D"text-decoration:none;display:bl=
+ock;border:0;outline:none;max-height:100px;max-width:200px;float:right;padd=
+ing:0;padding-left:4px;margin:auto" align=3D"right"><div style=3D"padding:0=
+;padding-bottom:16px;display:inline" dir=3D"ltr"><p style=3D"font-family: s=
+ystem-ui, Segoe UI, sans-serif; font-size: 15px; line-height: 1.4; color: #=
+333333; text-align: left; display: inline; margin: 0;"><span>Um einem Umzug=
+ ins Pflegeheim zu entgehen, haben 14 =C3=A4ltere Menschen ein gro=C3=9Fes =
+Haus gemietet, in dem sie alle zusammenleben.</span></p></div><span> </span=
+><div style=3D"padding:0;padding-bottom:16px;display:inline" dir=3D"ltr"><p=
+ style=3D"font-family: system-ui, Segoe UI, sans-serif; font-size: 15px; li=
+ne-height: 1.4; color: #333333; text-align: left; display: inline; margin: =
+0;"><span>Da sie nicht allein in einem Pflegeheim alt werden wollten, kauft=
+en vierz...</span></p></div><span> </span><a href=3D"https://de.quora.com/q=
+email/track_click?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8MXwxMHwyMTkxOTE5=
+OTYifQ%3D%3D&al_pri=3D8&aoid=3D8bvInJ9eIcj&aoty=3D4&aty=3D4&cp=3D1&ct=3D175=
+5947159711210&et=3D153&id=3Dba78ef0675dd4c2c8290f441924e0d9a&notif_type=3D5=
+08&request_id=3D508&snid=3D89660261886&src=3D1&st=3D1755947159713107&storie=
+s=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+197247481)%2C+(%3Cstory_types=
+.tribe_post%3A+10%3E%2C+200518393)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2=
+C+200661431)%5D&tribe_item_ids=3DVOOl8WXqfd8%7CVUxQweyiWs4%7CRuJemStwIuF&ui=
+d=3DzDMbfGON8KH&v=3D0" style=3D"text-decoration:none;display:inline;color:#=
+168de9"><span style=3D"color:#168de9">Mehr lesen =C2=BB</span></a></span></=
+a></div></td></tr><tr><td style=3D"font-size:0px;padding:0px;word-break:bre=
+ak-word;"><div style=3D"height:16px;line-height:16px;">=E2=80=8A</div></td>=
+</tr><tr><td style=3D"font-size:0px;padding:0px;padding-top:16px;padding-ri=
+ght:25%;padding-bottom:16px;padding-left:25%;word-break:break-word;" align=
+=3D"center"><p style=3D"border-top: solid 0.5px #dee0e1; font-size: 1px; wi=
+dth: 100%; margin: 0;"></p><!--[if mso | IE]><table align=3D"center" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"border-top:solid 0.5px =
+#dee0e1;font-size:1px;margin:0px auto;width:475px;" role=3D"presentation" w=
+idth=3D"475px" ><tr><td style=3D"height:0;line-height:0;"> &nbsp;
+</td></tr></table><![endif]--></td></tr><tr><td style=3D"font-size:0px;padd=
+ing:0px;word-break:break-word;"><div style=3D"height:8px;line-height:8px;">=
+=E2=80=8A</div></td></tr><tr><td style=3D"font-size:0px;padding:0px;padding=
+-bottom:8px;word-break:break-word;" align=3D"left" class=3D"text-pass-color=
+-to-links"><div style=3D"font-family:system-ui, Segoe UI, sans-serif;font-s=
+ize:19px;font-weight:700;letter-spacing:-0.5px;line-height:1.4;text-align:l=
+eft;color:#333333;"><a href=3D"https://de.quora.com/qemail/track_click?al_i=
+mp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8MnwxMHwyMjUzNjY4OTAifQ%3D%3D&al_pri=3D=
+0&aoid=3DMdJdOoEjYx8&aoty=3D4&aty=3D4&cp=3D2&ct=3D1755947159711210&et=3D153=
+&id=3Dba78ef0675dd4c2c8290f441924e0d9a&notif_type=3D508&request_id=3D508&sn=
+id=3D89660261886&src=3D1&st=3D1755947159713107&stories=3D%5B(%3Cstory_types=
+.tribe_post%3A+10%3E%2C+197247481)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2=
+C+200518393)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+200661431)%5D&tribe_=
+item_ids=3DVOOl8WXqfd8%7CVUxQweyiWs4%7CRuJemStwIuF&uid=3DzDMbfGON8KH&v=3D0"=
+ style=3D"text-decoration: none; color: inherit;"><span style=3D"color:#333=
+333"><span></span></span></a></div></td></tr><tr><td style=3D"font-size:0px=
+;padding:0px;word-break:break-word;" align=3D"left"><div style=3D"font-fami=
+ly:system-ui, Segoe UI, sans-serif;font-size:15px;line-height:1.6;text-alig=
+n:left;color:#333333;"><div style=3D"float:left;padding-bottom:8px"><table>=
+<tr><td style=3D"line-height:1" valign=3D"top" width=3D"40"><a href=3D"http=
+s://de.quora.com/qemail/track_click?aoid=3DMUsEQ87AuvY&aoty=3D3&aty=3D4&cp=
+=3D2&ct=3D1755947159711210&et=3D153&id=3Dba78ef0675dd4c2c8290f441924e0d9a&n=
+otif_type=3D508&request_id=3D508&snid=3D89660261886&src=3D1&st=3D1755947159=
+713107&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+197247481)%2C+(%=
+3Cstory_types.tribe_post%3A+10%3E%2C+200518393)%2C+(%3Cstory_types.tribe_po=
+st%3A+10%3E%2C+200661431)%5D&tribe_item_ids=3DVOOl8WXqfd8%7CVUxQweyiWs4%7CR=
+uJemStwIuF&uid=3DzDMbfGON8KH&v=3D0" style=3D"text-decoration:underline"><im=
+g alt=3D"Michael Tsil" height=3D"40" src=3D"https://qph.fs.quoracdn.net/mai=
+n-thumb-891866989-50-zwplynlmsfltuxdonfsscblsmjbvftco.jpeg" style=3D"border=
+-radius:100%;text-decoration:none;display:block;border:0;outline:none;width=
+:40px;height:40px;float:none;padding:0;margin:auto" align=3D"none" width=3D=
+"40"></a></td><td width=3D"4"></td><td valign=3D"top"><div style=3D"padding=
+:0;padding-bottom:4px" dir=3D"ltr" class=3D"text-pass-color-to-links"><p st=
+yle=3D"font-family: system-ui, Segoe UI, sans-serif; font-size: 15px; line-=
+height: 1.2; color: #333333; text-align: left; margin: 0;"><a href=3D"https=
+://de.quora.com/qemail/track_click?aoid=3DMUsEQ87AuvY&aoty=3D3&aty=3D4&cp=
+=3D2&ct=3D1755947159711210&et=3D153&id=3Dba78ef0675dd4c2c8290f441924e0d9a&n=
+otif_type=3D508&request_id=3D508&snid=3D89660261886&src=3D1&st=3D1755947159=
+713107&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+197247481)%2C+(%=
+3Cstory_types.tribe_post%3A+10%3E%2C+200518393)%2C+(%3Cstory_types.tribe_po=
+st%3A+10%3E%2C+200661431)%5D&tribe_item_ids=3DVOOl8WXqfd8%7CVUxQweyiWs4%7CR=
+uJemStwIuF&uid=3DzDMbfGON8KH&v=3D0" style=3D"text-decoration: none; color: =
+inherit;"><span style=3D"color:#333333"><span style=3D"font-weight:700">Mic=
+hael Tsil</span></span></a><span>, Engineering</span></p></div><div style=
+=3D"padding:0" dir=3D"ltr" class=3D"text-pass-color-to-links"><p style=3D"f=
+ont-family: system-ui, Segoe UI, sans-serif; font-size: 13px; line-height: =
+1.2; color: #939598; text-align: left; margin: 0;"><a href=3D"https://de.qu=
+ora.com/qemail/track_click?aoid=3DMdJdOoEjYx8&aoty=3D4&aty=3D4&cp=3D2&ct=3D=
+1755947159711210&et=3D153&id=3Dba78ef0675dd4c2c8290f441924e0d9a&notif_type=
+=3D508&request_id=3D508&snid=3D89660261886&src=3D1&st=3D1755947159713107&st=
+ories=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+197247481)%2C+(%3Cstory_t=
+ypes.tribe_post%3A+10%3E%2C+200518393)%2C+(%3Cstory_types.tribe_post%3A+10%=
+3E%2C+200661431)%5D&tribe_item_ids=3DVOOl8WXqfd8%7CVUxQweyiWs4%7CRuJemStwIu=
+F&uid=3DzDMbfGON8KH&v=3D0" style=3D"text-decoration: none; color: inherit;"=
+><span style=3D"color:#636466">Aktualisiert 16. Juni</span></a></p></div></=
+td></tr></table></div></div></td></tr><tr><td style=3D"font-size:0px;paddin=
+g:0px;word-break:break-word;" align=3D"left"><div style=3D"font-family:syst=
+em-ui, Segoe UI, sans-serif;font-size:15px;line-height:1.4;text-align:left;=
+color:#333333;"><a href=3D"https://de.quora.com/qemail/track_click?al_imp=
+=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8MnwxMHwyMjUzNjY4OTAifQ%3D%3D&al_pri=3D0&=
+aoid=3DMdJdOoEjYx8&aoty=3D4&aty=3D4&cp=3D2&ct=3D1755947159711210&et=3D153&i=
+d=3Dba78ef0675dd4c2c8290f441924e0d9a&notif_type=3D508&request_id=3D508&snid=
+=3D89660261886&src=3D1&st=3D1755947159713107&stories=3D%5B(%3Cstory_types.t=
+ribe_post%3A+10%3E%2C+197247481)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+=
+200518393)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+200661431)%5D&tribe_it=
+em_ids=3DVOOl8WXqfd8%7CVUxQweyiWs4%7CRuJemStwIuF&uid=3DzDMbfGON8KH&v=3D0" s=
+tyle=3D"text-decoration:none;color:#333333"><span style=3D"color:#333333"><=
+img alt height=3D"auto" src=3D"https://qph.fs.quoracdn.net/main-qimg-d4695c=
+60ef8b2bde6b1808d4a7a1157d" style=3D"text-decoration:none;display:block;bor=
+der:0;outline:none;max-height:100px;max-width:200px;float:right;padding:0;p=
+adding-left:4px;margin:auto" align=3D"right"><div style=3D"padding:0;paddin=
+g-bottom:16px;display:inline" dir=3D"ltr"><p style=3D"font-family: system-u=
+i, Segoe UI, sans-serif; font-size: 15px; line-height: 1.4; color: #333333;=
+ text-align: left; display: inline; margin: 0;"><span>Rezepte &Tipps</span>=
+</p></div><span> </span><div style=3D"padding:0;padding-bottom:16px;display=
+:inline" dir=3D"ltr"><p style=3D"font-family: system-ui, Segoe UI, sans-ser=
+if; font-size: 15px; line-height: 1.4; color: #333333; text-align: left; di=
+splay: inline; margin: 0;"><span>Jahre sp=C3=A4ter gab Sophia Loren gegen=
+=C3=BCber Entertainment Weekly ihre eigene Erkl=C3=A4rung f=C3=BCr ihren Bl=
+ick auf dem legend=C3=A4ren Foto: =E2=80=9EIch hatte das Gef=C3=BChl, ihre =
+Brustwarzen w=C3=BCrden auf meinen T...</span></p></div><span> </span><a hr=
+ef=3D"https://de.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMzMsICJo=
+YXNoIjogIjB8MnwxMHwyMjUzNjY4OTAifQ%3D%3D&al_pri=3D8&aoid=3DMdJdOoEjYx8&aoty=
+=3D4&aty=3D4&cp=3D2&ct=3D1755947159711210&et=3D153&id=3Dba78ef0675dd4c2c829=
+0f441924e0d9a&notif_type=3D508&request_id=3D508&snid=3D89660261886&src=3D1&=
+st=3D1755947159713107&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+1=
+97247481)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+200518393)%2C+(%3Cstory=
+_types.tribe_post%3A+10%3E%2C+200661431)%5D&tribe_item_ids=3DVOOl8WXqfd8%7C=
+VUxQweyiWs4%7CRuJemStwIuF&uid=3DzDMbfGON8KH&v=3D0" style=3D"text-decoration=
+:none;display:inline;color:#168de9"><span style=3D"color:#168de9">Mehr lese=
+n =C2=BB</span></a></span></a></div></td></tr><tr><td style=3D"font-size:0p=
+x;padding:0px;word-break:break-word;"><div style=3D"height:16px;line-height=
+:16px;">=E2=80=8A</div></td></tr><tr><td style=3D"font-size:0px;padding:0px=
+;padding-top:16px;padding-right:25%;padding-bottom:16px;padding-left:25%;wo=
+rd-break:break-word;" align=3D"center"><p style=3D"border-top: solid 0.5px =
+#dee0e1; font-size: 1px; width: 100%; margin: 0;"></p><!--[if mso | IE]><ta=
+ble align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"border-top:solid 0.5px #dee0e1;font-size:1px;margin:0px auto;width:475p=
+x;" role=3D"presentation" width=3D"475px" ><tr><td style=3D"height:0;line-h=
+eight:0;"> &nbsp;
+</td></tr></table><![endif]--></td></tr><tr><td style=3D"font-size:0px;padd=
+ing:0px;word-break:break-word;"><div style=3D"height:8px;line-height:8px;">=
+=E2=80=8A</div></td></tr><tr><td style=3D"font-size:0px;padding:0px;padding=
+-bottom:8px;word-break:break-word;" align=3D"left" class=3D"text-pass-color=
+-to-links"><div style=3D"font-family:system-ui, Segoe UI, sans-serif;font-s=
+ize:19px;font-weight:700;letter-spacing:-0.5px;line-height:1.4;text-align:l=
+eft;color:#333333;"><a href=3D"https://de.quora.com/qemail/track_click?al_i=
+mp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8M3wxMHwyMjU2NDYwMDYifQ%3D%3D&al_pri=3D=
+0&aoid=3DRJq9p9dSQPu&aoty=3D4&aty=3D4&cp=3D3&ct=3D1755947159711210&et=3D153=
+&id=3Dba78ef0675dd4c2c8290f441924e0d9a&notif_type=3D508&request_id=3D508&sn=
+id=3D89660261886&src=3D1&st=3D1755947159713107&stories=3D%5B(%3Cstory_types=
+.tribe_post%3A+10%3E%2C+197247481)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2=
+C+200518393)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+200661431)%5D&tribe_=
+item_ids=3DVOOl8WXqfd8%7CVUxQweyiWs4%7CRuJemStwIuF&uid=3DzDMbfGON8KH&v=3D0"=
+ style=3D"text-decoration: none; color: inherit;"><span style=3D"color:#333=
+333"><span></span></span></a></div></td></tr><tr><td style=3D"font-size:0px=
+;padding:0px;word-break:break-word;" align=3D"left"><div style=3D"font-fami=
+ly:system-ui, Segoe UI, sans-serif;font-size:15px;line-height:1.6;text-alig=
+n:left;color:#333333;"><div style=3D"float:left;padding-bottom:8px"><table>=
+<tr><td style=3D"line-height:1" valign=3D"top" width=3D"40"><a href=3D"http=
+s://de.quora.com/qemail/track_click?aoid=3DMUsEQ87AuvY&aoty=3D3&aty=3D4&cp=
+=3D3&ct=3D1755947159711210&et=3D153&id=3Dba78ef0675dd4c2c8290f441924e0d9a&n=
+otif_type=3D508&request_id=3D508&snid=3D89660261886&src=3D1&st=3D1755947159=
+713107&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+197247481)%2C+(%=
+3Cstory_types.tribe_post%3A+10%3E%2C+200518393)%2C+(%3Cstory_types.tribe_po=
+st%3A+10%3E%2C+200661431)%5D&tribe_item_ids=3DVOOl8WXqfd8%7CVUxQweyiWs4%7CR=
+uJemStwIuF&uid=3DzDMbfGON8KH&v=3D0" style=3D"text-decoration:underline"><im=
+g alt=3D"Michael Tsil" height=3D"40" src=3D"https://qph.fs.quoracdn.net/mai=
+n-thumb-891866989-50-zwplynlmsfltuxdonfsscblsmjbvftco.jpeg" style=3D"border=
+-radius:100%;text-decoration:none;display:block;border:0;outline:none;width=
+:40px;height:40px;float:none;padding:0;margin:auto" align=3D"none" width=3D=
+"40"></a></td><td width=3D"4"></td><td valign=3D"top"><div style=3D"padding=
+:0;padding-bottom:4px" dir=3D"ltr" class=3D"text-pass-color-to-links"><p st=
+yle=3D"font-family: system-ui, Segoe UI, sans-serif; font-size: 15px; line-=
+height: 1.2; color: #333333; text-align: left; margin: 0;"><a href=3D"https=
+://de.quora.com/qemail/track_click?aoid=3DMUsEQ87AuvY&aoty=3D3&aty=3D4&cp=
+=3D3&ct=3D1755947159711210&et=3D153&id=3Dba78ef0675dd4c2c8290f441924e0d9a&n=
+otif_type=3D508&request_id=3D508&snid=3D89660261886&src=3D1&st=3D1755947159=
+713107&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+197247481)%2C+(%=
+3Cstory_types.tribe_post%3A+10%3E%2C+200518393)%2C+(%3Cstory_types.tribe_po=
+st%3A+10%3E%2C+200661431)%5D&tribe_item_ids=3DVOOl8WXqfd8%7CVUxQweyiWs4%7CR=
+uJemStwIuF&uid=3DzDMbfGON8KH&v=3D0" style=3D"text-decoration: none; color: =
+inherit;"><span style=3D"color:#333333"><span style=3D"font-weight:700">Mic=
+hael Tsil</span></span></a><span>, Engineering</span></p></div><div style=
+=3D"padding:0" dir=3D"ltr" class=3D"text-pass-color-to-links"><p style=3D"f=
+ont-family: system-ui, Segoe UI, sans-serif; font-size: 13px; line-height: =
+1.2; color: #939598; text-align: left; margin: 0;"><a href=3D"https://de.qu=
+ora.com/qemail/track_click?aoid=3DRJq9p9dSQPu&aoty=3D4&aty=3D4&cp=3D3&ct=3D=
+1755947159711210&et=3D153&id=3Dba78ef0675dd4c2c8290f441924e0d9a&notif_type=
+=3D508&request_id=3D508&snid=3D89660261886&src=3D1&st=3D1755947159713107&st=
+ories=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+197247481)%2C+(%3Cstory_t=
+ypes.tribe_post%3A+10%3E%2C+200518393)%2C+(%3Cstory_types.tribe_post%3A+10%=
+3E%2C+200661431)%5D&tribe_item_ids=3DVOOl8WXqfd8%7CVUxQweyiWs4%7CRuJemStwIu=
+F&uid=3DzDMbfGON8KH&v=3D0" style=3D"text-decoration: none; color: inherit;"=
+><span style=3D"color:#636466">Ver=C3=B6ffentlicht 12. Juni</span></a></p><=
+/div></td></tr></table></div></div></td></tr><tr><td style=3D"font-size:0px=
+;padding:0px;word-break:break-word;" align=3D"left"><div style=3D"font-fami=
+ly:system-ui, Segoe UI, sans-serif;font-size:15px;line-height:1.4;text-alig=
+n:left;color:#333333;"><a href=3D"https://de.quora.com/qemail/track_click?a=
+l_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8M3wxMHwyMjU2NDYwMDYifQ%3D%3D&al_pri=
+=3D0&aoid=3DRJq9p9dSQPu&aoty=3D4&aty=3D4&cp=3D3&ct=3D1755947159711210&et=3D=
+153&id=3Dba78ef0675dd4c2c8290f441924e0d9a&notif_type=3D508&request_id=3D508=
+&snid=3D89660261886&src=3D1&st=3D1755947159713107&stories=3D%5B(%3Cstory_ty=
+pes.tribe_post%3A+10%3E%2C+197247481)%2C+(%3Cstory_types.tribe_post%3A+10%3=
+E%2C+200518393)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+200661431)%5D&tri=
+be_item_ids=3DVOOl8WXqfd8%7CVUxQweyiWs4%7CRuJemStwIuF&uid=3DzDMbfGON8KH&v=
+=3D0" style=3D"text-decoration:none;color:#333333"><span style=3D"color:#33=
+3333"><img alt height=3D"auto" src=3D"https://qph.fs.quoracdn.net/main-qimg=
+-337d533648f2c3677276cdae1939904f" style=3D"text-decoration:none;display:bl=
+ock;border:0;outline:none;max-height:100px;max-width:200px;float:right;padd=
+ing:0;padding-left:4px;margin:auto" align=3D"right"><div style=3D"padding:0=
+;padding-bottom:16px;display:inline" dir=3D"ltr"><p style=3D"font-family: s=
+ystem-ui, Segoe UI, sans-serif; font-size: 15px; line-height: 1.4; color: #=
+333333; text-align: left; display: inline; margin: 0;"><span>A Highland New=
+ Guinean is shocked to see a white person for the first time in his life. B=
+efore 1930, Highlanders thought they were the only living people in the wor=
+ld.</span></p></div><span> </span><div style=3D"padding:0;padding-bottom:16=
+px;display:inline" dir=3D"ltr"><p style=3D"font-family: system-ui, Segoe UI=
+, sans-serif; font-size: 15px; line-height: 1.4; color: #333333; text-align=
+: left; display: inline; margin: 0;"><span>Ein Bewohner der Hochlandregio..=
+.</span></p></div><span> </span><a href=3D"https://de.quora.com/qemail/trac=
+k_click?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8M3wxMHwyMjU2NDYwMDYifQ%3D%=
+3D&al_pri=3D8&aoid=3DRJq9p9dSQPu&aoty=3D4&aty=3D4&cp=3D3&ct=3D1755947159711=
+210&et=3D153&id=3Dba78ef0675dd4c2c8290f441924e0d9a&notif_type=3D508&request=
+_id=3D508&snid=3D89660261886&src=3D1&st=3D1755947159713107&stories=3D%5B(%3=
+Cstory_types.tribe_post%3A+10%3E%2C+197247481)%2C+(%3Cstory_types.tribe_pos=
+t%3A+10%3E%2C+200518393)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+20066143=
+1)%5D&tribe_item_ids=3DVOOl8WXqfd8%7CVUxQweyiWs4%7CRuJemStwIuF&uid=3DzDMbfG=
+ON8KH&v=3D0" style=3D"text-decoration:none;display:inline;color:#168de9"><s=
+pan style=3D"color:#168de9">Mehr lesen =C2=BB</span></a></span></a></div></=
+td></tr><tr><td style=3D"font-size:0px;padding:0px;word-break:break-word;">=
+<div style=3D"height:16px;line-height:16px;">=E2=80=8A</div></td></tr><tr><=
+td style=3D"font-size:0px;padding:0px;padding-top:24px;padding-bottom:32px;=
+word-break:break-word;" align=3D"center" vertical-align=3D"middle"><table b=
+order=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=
+=3D"border-collapse:separate;line-height:100%;"><tbody><tr><td style=3D"bor=
+der:1px solid null;border-radius:25px;cursor:auto;height:50px;mso-padding-a=
+lt:8px 32px;background:#2e69ff;" align=3D"center" bgcolor=3D"#2e69ff" role=
+=3D"presentation" valign=3D"middle"><a href=3D"https://fotowelt.quora.com" =
+style=3D"display:inline-block;background:#2e69ff;color:#ffffff;font-family:=
+system-ui, Segoe UI, sans-serif;font-size:14px;font-weight:500;line-height:=
+120%;margin:0;text-decoration:none;text-transform:none;padding:8px 32px;mso=
+-padding-alt:0px;border-radius:25px;" target=3D"_blank">Mehr lesen in Fotow=
+elt</a></td></tr></tbody></table></td></tr></tbody></table></div><!--[if ms=
+o | IE]></td></tr></table><![endif]--></div><!--[if mso | IE]></td></tr></t=
+able><![endif]--></td></tr></tbody></table></div><!--[if mso | IE]></td></t=
+r></table><![endif]--></td></tr></tbody></table><table border=3D"0" cellpad=
+ding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"width:100%;" al=
+ign=3D"center"><tbody><tr><td><!--[if mso | IE]><table align=3D"center" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" role=3D"presentati=
+on" style=3D"width:525px;" width=3D"525" ><tr><td style=3D"line-height:0px;=
+font-size:0px;mso-line-height-rule:exactly;"><![endif]--><div style=3D"marg=
+in:0px auto;max-width:525px;"><table border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" role=3D"presentation" style=3D"width:100%;" align=3D"center"><tb=
+ody><tr><td style=3D"direction:ltr;font-size:0px;padding:24px;padding-left:=
+0px;padding-right:0px;padding-top:0px;text-align:center;"><!--[if mso | IE]=
+><table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D=
+"0"><tr><td class=3D"" style=3D"vertical-align:top;width:525px;" ><![endif]=
+--><div style=3D"font-size:0px;text-align:left;direction:ltr;display:inline=
+-block;vertical-align:top;width:100%;" class=3D"mj-column-per-100 mj-outloo=
+k-group-fix"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=
+=3D"presentation" style=3D"vertical-align:top;" width=3D"100%"><tbody><tr><=
+td style=3D"font-size:0px;padding:0px;padding-top:0px;padding-bottom:16px;w=
+ord-break:break-word;" align=3D"center"><p style=3D"border-top: solid 0.5px=
+ #dee0e1; font-size: 1px; width: 100%; margin: 0;"></p><!--[if mso | IE]><t=
+able align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"border-top:solid 0.5px #dee0e1;font-size:1px;margin:0px auto;width:525=
+px;" role=3D"presentation" width=3D"525px" ><tr><td style=3D"height:0;line-=
+height:0;"> &nbsp;
+</td></tr></table><![endif]--></td></tr><tr><td style=3D"font-size:0px;padd=
+ing:0px;padding-top:16px;padding-bottom:8px;word-break:break-word;" align=
+=3D"center" class=3D"text-pass-color-to-links"><div style=3D"font-family:sy=
+stem-ui, Segoe UI, sans-serif;font-size:11px;line-height:1.6;text-align:cen=
+ter;color:#939598;">Diese E-Mail wurde von Quora versendet (605 Castro Stre=
+et, Mountain View, CA 94041).<br>Diese E-Mail wurde versandt, weil Du <a hr=
+ef=3D"https://fotowelt.quora.com" style=3D"text-decoration: underline; colo=
+r: inherit;">Fotowelt</a> folgst. Falls Du keine weiteren Benachrichtigunge=
+n dieser Art m=C3=B6chtest, kannst Du <a href=3D"https://de.quora.com/qemai=
+l/track_click?__toast__=3Dtribe_muted&aoid=3D3wACBchgVqA&aoty=3D24&aty=3D27=
+&cp=3D10&ct=3D1755947159711210&et=3D153&id=3Dba78ef0675dd4c2c8290f441924e0d=
+9a&notif_type=3D508&request_id=3D508&snid=3D89660261886&src=3D1&st=3D175594=
+7159713107&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+197247481)%2=
+C+(%3Cstory_types.tribe_post%3A+10%3E%2C+200518393)%2C+(%3Cstory_types.trib=
+e_post%3A+10%3E%2C+200661431)%5D&tribe_item_ids=3DVOOl8WXqfd8%7CVUxQweyiWs4=
+%7CRuJemStwIuF&uid=3DzDMbfGON8KH&v=3D0" style=3D"text-decoration: underline=
+; color: inherit;">Fotowelt stummschalten</a> oder das <a href=3D"https://d=
+e.quora.com/email_optout/qemail_unsubscribe?email_track_id=3Dba78ef0675dd4c=
+2c8290f441924e0d9a&t=3D1755947159742770&token=3D6ef40dc62995ab08f9c8ac491ca=
+9b534fb4ac7da5028198106ce842a0b5f14fd187e3db46cc87c5f8b078bde3ccae399eec692=
+824fa7b32223ce77aebcc62394&type=3D153&uid=3D189974078" style=3D"text-decora=
+tion: underline; color: inherit;">Abonnement beenden</a>.</div></td></tr><t=
+r><td style=3D"font-size:0px;padding:0px;word-break:break-word;" align=3D"c=
+enter" class=3D"text-pass-color-to-links"><div style=3D"font-family:system-=
+ui, Segoe UI, sans-serif;font-size:11px;line-height:1.6;text-align:center;c=
+olor:#939598;"><a href=3D"https://www.quora.com" style=3D"text-decoration: =
+underline; color: inherit;">https://www.quora.com</a></div></td></tr></tbod=
+y></table></div><!--[if mso | IE]></td></tr></table><![endif]--></td></tr><=
+/tbody></table></div><!--[if mso | IE]></td></tr></table><![endif]--></td><=
+/tr></tbody></table></div></body></html>
+--===============5844574417521964575==--

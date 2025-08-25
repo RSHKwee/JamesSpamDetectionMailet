@@ -1,0 +1,810 @@
+X-Mozilla-Status2: 00000000
+X-Mozilla-Keys:                                                                                 
+Return-Path: thebattleforukraine-space@quora.com
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (svnunknown) on MAILSERVER
+X-Spam-Level: 
+X-Spam-Status: No, score=-4.1 required=3.0 tests=DKIMWL_WL_HIGH,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_FONT_LOW_CONTRAST,HTML_MESSAGE,
+	RCVD_IN_MSPIKE_H2,RCVD_IN_RP_CERTIFIED,RCVD_IN_RP_RNBL,RCVD_IN_RP_SAFE,
+	SPF_HELO_NONE autolearn=ham autolearn_force=no version=3.4.4
+X-Spam-Report: 
+	* -0.0 RCVD_IN_MSPIKE_H2 RBL: Average reputation (+2)
+	*      [18.214.110.155 listed in wl.mailspike.net]
+	*  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+	*  1.3 RCVD_IN_RP_RNBL RBL: Relay in RNBL,
+	*      https://senderscore.org/blacklistlookup/
+	*      [18.214.110.155 listed in bl.score.senderscore.com]
+	* -3.0 RCVD_IN_RP_CERTIFIED RBL: Sender in ReturnPath Certified -
+	*      Contact cert-sa@returnpath.net
+	*      [Excessive Number of Queries | <https://knowledge.validity.com/hc/en-us/articles/20961730681243>]
+	* -2.0 RCVD_IN_RP_SAFE RBL: Sender in ReturnPath Safe - Contact
+	*      safe-sa@returnpath.net
+	*  0.0 HTML_FONT_LOW_CONTRAST BODY: HTML font color similar or
+	*      identical to background
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*       valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	*      author's domain
+	* -0.2 DKIMWL_WL_HIGH DKIMwl.org - High trust sender
+	*
+X-hMailServer-ExternalAccount: Gmail
+Delivered-To: example@gmail.com
+Received: by 2002:a05:7208:700b:b0:a6:644a:f8b9 with SMTP id n11csp4434419rba;
+        Sat, 23 Aug 2025 03:41:30 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGY9QNfUNKhcJfLBniQPKupPQEL4f10OkZYX4hmcJgI+JnceI8/Q75WZ3x3fNGCCXe0CdPR
+X-Received: by 2002:a05:622a:50c:b0:4b2:8ac4:ef7c with SMTP id d75a77b69052e-4b2aab4abe8mr67748851cf.75.1755945689763;
+        Sat, 23 Aug 2025 03:41:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1755945689; cv=none;
+        d=google.com; s=arc-20240605;
+        b=DK8NFgqmo6M3zbvsfHSgyeOvkw9ZYYceseN6tnKarFcTbAfVMM+ceaIomw6+V4nSzb
+         hxRbzgc4ZUSzHRlaYoKtB0Mj7ULG8Ohh2SqU7UeZ1SVFjJ6cY5cTk425TAuk186ttTYO
+         FGHh8xF7pxDOweOcsF5fVLGeVpENyaMBhkK4FNGTQv7gXyyPwPq0z+B9i/c8nM7p5IbQ
+         qAO0IufBRJ22PHGe7rd9HsHQaimuyp+eLxb1CsnsLluGS9bwnyzlHmdDuW5r4BfBGmUp
+         1ck4a7afMqVnAC4kBrvswdpl66uc/GQucd6kciZKYYrf/x0lZ5lK6ZpcPh7lo5BGQrin
+         kKng==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=message-id:date:list-unsubscribe:subject:to:from:mime-version
+         :dkim-signature;
+        bh=l4L/Bhl4gq/Trz6tU9owwUPpJlU5ZFMJF/z903mSac4=;
+        fh=/ewnXd3rgw5jMYF1sK9U578ir8ZormtsbijP56b0yRk=;
+        b=FYEXI3f9nxW+2SLgaHax+RSXif7ua2rJZBNxfd6Aw1AmBOC82ECAgKPERIQZ4eNdUa
+         4/vzUc2aQWOaoxfMNS0OWS8UfUed+hxivnHuOT3XcZAE4sOi4K1QSJWavsvttnUyzDee
+         aNVbIxk0QSebOfZxovtNQg/owlCbvWdWoKlAPsSKTuPKnpLxMtU1cLh64EuGw5V1nhg2
+         qk+ViOKkYHaj18BRbMqYBF3ydD10He5gFvY5QXvGvs434NOL6/IX5zaugUFsvyG/6NOD
+         JhbvmnNFVi+7g9Si2lWZ1WXTUyD0i0e8g/ZysWyAVt4PemIEmvgd2/ukm1g66/f+1PJ0
+         lLNg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@quora.com header.s=pigeon header.b=E7jR+DAG;
+       spf=pass (google.com: domain of noreply@quora.com designates 18.214.110.155 as permitted sender) smtp.mailfrom=noreply@quora.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=quora.com
+Return-Path: <noreply@quora.com>
+Received: from o60.pigeon.quora.com (o60.pigeon.quora.com. [18.214.110.155])
+        by mx.google.com with ESMTPS id d75a77b69052e-4b2b8dc478esi8969531cf.305.2025.08.23.03.41.29
+        for <example@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 23 Aug 2025 03:41:29 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@quora.com designates 18.214.110.155 as permitted sender) client-ip=18.214.110.155;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@quora.com header.s=pigeon header.b=E7jR+DAG;
+       spf=pass (google.com: domain of noreply@quora.com designates 18.214.110.155 as permitted sender) smtp.mailfrom=noreply@quora.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=quora.com
+Received: 
+	by pigeon-at-10017 (OpenSMTPD) with ESMTP id f067b78f
+	for <example@gmail.com>;
+	Sat, 23 Aug 2025 10:41:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quora.com; h=
+	content-type:mime-version:from:to:subject:list-unsubscribe:date
+	:message-id; s=pigeon; bh=l4L/Bhl4gq/Trz6tU9owwUPpJlU5ZFMJF/z903
+	mSac4=; b=E7jR+DAGQPFjNWh155G7JSP2NWWZ6cHj5qtqexY84P19x0XGbzkLBC
+	jB8wA8raWR96eJRjEDpjrh88y6+qWMth8hdXPLsWTu2Ow41XRtfMyw5AUFgtCyUN
+	DSTuFn3SGfGdspXNcEh208+xmfmXbh5YfPHso3FGZ/dyryMKJinQKPkgYljqqA1P
+	g/P+I0umYCTHt26aOhhfPg3O1pg9DqTJGz2KoMNdUzcFultbvSI0gpGanyXnhRfA
+	y4FzirKS2heBZUVffuyHvfyTi12wuDpyJaz/tI69f2S+J/OrlBI2v5XhWw+wUIQw
+	CJ0tRf1I8VSivqSDUC4vb3aoPTyymHaQ==
+Content-Type: multipart/alternative;
+ boundary="===============9129233188577730311=="
+MIME-Version: 1.0
+From: THE BATTLE FOR UKRAINE <thebattleforukraine-space@quora.com>
+To: example@gmail.com
+Subject: =?utf-8?q?=F0=9F=94=A5_Europe_=26_Ukraine_draw_a_RED_LINE_for_Putin_Talks?=
+List-Unsubscribe: <https://www.quora.com/email_optout/qemail_unsubscribe?email_track_id=f6cfd7882c2e4248aa1c41ce29e7d056&ish=1&t=1755945687818153&token=1febb334a1e2a68fc491a49a71152e81d818120423db89095b99b9c10fff3d3455078ca5405a32ab8f93f2bfcbc4f64a21d42be029c88301b1b0334927a266a6&type=146&uid=189974078>
+X-CID: vht45hqWfyMcVQZv6h36WD5NdiLhrbEPU3bdLtyWjooaNdFB90hZP5dBaOkUioJq2D1n2j_OaX5RaWdCSwxAdtQQoxX652lnE_6ILh1JL26FKDTmjAkuJpXjpJZ9XjGJcyL5nu7TJgrfAAECAA==
+Date: Sat, 23 Aug 2025 10:41:28 +0000
+Message-ID: <vht45hqWfyMcVQZv6h36WD5NdiLhrbEPU3bdLtyWjooaNdFB90hZP5dBaOkUioJq2D1n2j_OaX5RaWdCSwxAdtQQoxX652lnE_6ILh1JL26FKDTmjAkuJpXjpJZ9XjGJcyL5nu7TJgrfAAECAA==@t1.msgid.quoramail.com>
+X-SMTPAPI: =?utf-8?q?=7B=22unique=5Fargs=22=3A_=7B=22Message-ID=22=3A_=22=3Cvht45hqWfyM?=
+ =?utf-8?q?cVQZv6h36WD5NdiLhrbEPU3bdLtyWjooaNdFB90hZP5dBaOkUioJq2D1n2j=5FOaX?=
+ =?utf-8?q?5RaWdCSwxAdtQQoxX652lnE=5F6ILh1JL26FKDTmjAkuJpXjpJZ9XjGJcyL5nu7TJ?=
+ =?utf-8?q?grfAAECAA=3D=3D=40t1=2Emsgid=2Equoramail=2Ecom=3E=22=2C_=22accoun?=
+ =?utf-8?q?t=22=3A_=22notif=22=2C_=22email=5Ftype=22=3A_146=2C_=22ip=5Fpool?=
+ =?utf-8?q?=22=3A_=22notif=22=2C_=22X-QMSG=22=3A_=22eCaQt3=5FhHGW2FkzI0qkZQ1?=
+ =?utf-8?q?AjJR-WeteGpDrHkUrmI5kdHfdzsSTIPPXhXmXaFbBoPePofL7K2A5uNQowkUSEHDb?=
+ =?utf-8?q?Yih7niCNS-EYeM50oKwbJEF3hQ7Rf-uprbnkE-0ut=5FBwVkbywbfDPjprjNk6bXU?=
+ =?utf-8?q?nBKxdnSWf=5F8bsD8CwCsJqOZei=5FCNPZ3l33QdcPuptejy10kppGnfZ6smFS71V?=
+ =?utf-8?q?toiXB3J6dAcq97Z2lW-k04mfKW-GXslI4zSUpu8octP5nsw9cmxeeWRAqcw=5FCHq?=
+ =?utf-8?q?ykZ63z9lUd968eU9Hmp9Sb1G8uhhi5N6wvxbK6nwuScHzPhKjPgVfe6MvcDxUKyWH?=
+ =?utf-8?q?rpzCkXO8fyF0D-jPtwcg4QgYi6EfHj9xRhk-JR=5FUQYUdxFRqWJpgRNZo1n24Xwj?=
+ =?utf-8?q?cjVJEr2yDPih0P3VhSJpZ98LFIsUWxBsL7b4EPP-qE6M3MWmrNzLNl5eAa8wW3iwT?=
+ =?utf-8?q?OmtNiokG8EPRM6Sv-NvIGuTG5J2DvIgABAgA=3D=22=7D=2C_=22category=22?=
+ =?utf-8?q?=3A_=5B=22account=5Fnotif=22=2C_=22email=5Ftype=5F146=22=2C_=22ip?=
+ =?utf-8?q?=5Fpool=5Fnotif=22=5D=2C_=22filters=22=3A_=7B=22bypass=5Flist=5Fm?=
+ =?utf-8?q?anagement=22=3A_=7B=22settings=22=3A_=7B=22enable=22=3A_1=7D=7D?=
+ =?utf-8?q?=7D=2C_=22ip=5Fpool=22=3A_=22notif=22=7D?=
+X-QMSG: =?utf-8?q?eCaQt3=5FhHGW2FkzI0qkZQ1AjJR-WeteGpDrHkUrmI5kdHfdzsSTIPPXhXmXaFbBo?=
+ =?utf-8?q?PePofL7K2A5uNQowkUSEHDbYih7niCNS-EYeM50oKwbJEF3hQ7Rf-uprbnkE-0ut?=
+ =?utf-8?q?=5FBwVkbywbfDPjprjNk6bXUnBKxdnSWf=5F8bsD8CwCsJqOZei=5FCNPZ3l33Qdc?=
+ =?utf-8?q?Puptejy10kppGnfZ6smFS71VtoiXB3J6dAcq97Z2lW-k04mfKW-GXslI4zSUpu8oc?=
+ =?utf-8?q?tP5nsw9cmxeeWRAqcw=5FCHqykZ63z9lUd968eU9Hmp9Sb1G8uhhi5N6wvxbK6nwu?=
+ =?utf-8?q?ScHzPhKjPgVfe6MvcDxUKyWHrpzCkXO8fyF0D-jPtwcg4QgYi6EfHj9xRhk-JR=5F?=
+ =?utf-8?q?UQYUdxFRqWJpgRNZo1n24XwjcjVJEr2yDPih0P3VhSJpZ98LFIsUWxBsL7b4EPP-q?=
+ =?utf-8?q?E6M3MWmrNzLNl5eAa8wW3iwTOmtNiokG8EPRM6Sv-NvIGuTG5J2DvIgABAgA=3D?=
+
+--===============9129233188577730311==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+
+Trending Stories from THE BATTLE FOR UKRAINE
+
+-----
+
+
+
+
+
+=F0=9F=94=A5 Europe & Ukraine draw a RED LINE for Putin Talks
+
+Kyiv and its European allies have just handed Washington a  negotiation pla=
+n  that flips the script:
+no talks until the guns go silent, no land given without land taken back, a=
+nd ironclad security gua...
+
+Read More: https://www.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMz=
+MsICJoYXNoIjogIjB8MXwxMHwyMjk4ODI5ODUifQ%3D%3D&al_pri=3D0&aoid=3DMFCP95A6f0=
+7&aoty=3D4&aty=3D4&cp=3D1&ct=3D1755945687731439&et=3D146&id=3D6828a03eaece4=
+e16b4b2b9c1c8a967f8&notif_type=3D418&request_id=3D418&snid=3D89659746237&sr=
+c=3D1&st=3D1755945687734835&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3=
+E%2C+202891015)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+202966758)%2C+(%3=
+Cstory_types.tribe_post%3A+10%3E%2C+203288696)%5D&tribe_item_ids=3Dflci6Tx7=
+8S%7CoiksDGhZ697%7CdpiQKUkahdH&uid=3DzDMbfGON8KH&v=3D0
+
+-----
+
+
+
+
+Question: JD Vance announced on Aug 10, 2025, that the US is done with fina=
+ncing Ukraine's defense. What was he talking about?
+Yeah=E2=80=A6 he pushes a false Ukraine aid narrative built on a lie with w=
+hich he aids Russia.
+
+On Fox News, US Vice President JD Vance told  [ https://www.foxnews.com/vid=
+eo/63...
+
+Read More: https://www.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMz=
+MsICJoYXNoIjogIjB8MnwxMHwyMzAwMTQ0MzUifQ%3D%3D&al_pri=3D0&aoid=3Do28amt6SLB=
+x&aoty=3D4&aty=3D4&cp=3D2&ct=3D1755945687731439&et=3D146&id=3D6828a03eaece4=
+e16b4b2b9c1c8a967f8&notif_type=3D418&request_id=3D418&snid=3D89659746237&sr=
+c=3D1&st=3D1755945687734835&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3=
+E%2C+202891015)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+202966758)%2C+(%3=
+Cstory_types.tribe_post%3A+10%3E%2C+203288696)%5D&tribe_item_ids=3Dflci6Tx7=
+8S%7CoiksDGhZ697%7CdpiQKUkahdH&uid=3DzDMbfGON8KH&v=3D0
+
+-----
+
+
+=E2=80=9CZelenskyy SCORES a powerful point=E2=80=94gifts Trump a war-hero=
+=E2=80=99s golf club=E2=80=9D
+
+Ukraine=E2=80=99s president stepped up the diplomacy with a move straight f=
+rom the heart: Zelensky presented Donald Trump with a golf cl...
+
+
+
+Read More: https://www.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMz=
+MsICJoYXNoIjogIjB8M3wxMHwyMzA2MDE2MzcifQ%3D%3D&al_pri=3D0&aoid=3DqqXcs73y3A=
+m&aoty=3D4&aty=3D4&cp=3D3&ct=3D1755945687731439&et=3D146&id=3D6828a03eaece4=
+e16b4b2b9c1c8a967f8&notif_type=3D418&request_id=3D418&snid=3D89659746237&sr=
+c=3D1&st=3D1755945687734835&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3=
+E%2C+202891015)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+202966758)%2C+(%3=
+Cstory_types.tribe_post%3A+10%3E%2C+203288696)%5D&tribe_item_ids=3Dflci6Tx7=
+8S%7CoiksDGhZ697%7CdpiQKUkahdH&uid=3DzDMbfGON8KH&v=3D0
+
+-----
+
+-----
+
+To control which emails we send you, visit: https://www.quora.com/qemail/tr=
+ack_click?aoid&aoty=3D14&aty=3D4&cp=3D0&ct=3D1755945687731439&et=3D146&id=
+=3D6828a03eaece4e16b4b2b9c1c8a967f8&notif_type=3D418&request_id=3D418&snid=
+=3D89659746237&src=3D1&st=3D1755945687734835&stories=3D%5B(%3Cstory_types.t=
+ribe_post%3A+10%3E%2C+202891015)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+=
+202966758)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+203288696)%5D&tribe_it=
+em_ids=3Dflci6Tx78S%7CoiksDGhZ697%7CdpiQKUkahdH&uid=3DzDMbfGON8KH&v=3D0
+
+To unsubscribe from this type of email, visit: https://www.quora.com/email_=
+optout/qemail_unsubscribe?email_track_id=3D6828a03eaece4e16b4b2b9c1c8a967f8=
+&t=3D1755945687819916&token=3D47491a392a50b4baeab133f16e67d4512ba01b708d780=
+ecc17a1bfbf19c5cae520aa3a8623f39eb5565ccb173652f0f475a8c7777a8e4a686a6a658c=
+219f30fd&type=3D146&uid=3D189974078
+--===============9129233188577730311==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+
+<!doctype html><html lang=3D"en" xmlns=3D"http://www.w3.org/1999/xhtml" xml=
+ns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:v=3D"urn:schemas-mic=
+rosoft-com:vml"><head><title>=F0=9F=94=A5 Europe & Ukraine draw a RED LINE =
+for Putin Talks</title><!--[if !mso]><!--><meta content=3D"IE=3Dedge" http-=
+equiv=3D"X-UA-Compatible"><!--<![endif]--><meta content=3D"text/html; chars=
+et=3DUTF-8" http-equiv=3D"Content-Type"><meta content=3D"width=3Ddevice-wid=
+th,initial-scale=3D1" name=3D"viewport"><style>#outlook a { padding:0; }
+          body { margin:0;padding:0;-webkit-text-size-adjust:100%;-ms-text-=
+size-adjust:100%; }
+          table, td { border-collapse:collapse;mso-table-lspace:0pt;mso-tab=
+le-rspace:0pt; }
+          img { border:0;height:auto;line-height:100%; outline:none;text-de=
+coration:none;-ms-interpolation-mode:bicubic; }
+          p { display:block;margin:13px 0; }</style><!--[if mso]>
+        <noscript>
+        <xml>
+        <o:OfficeDocumentSettings>
+          <o:AllowPNG/>
+          <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+        </xml>
+        </noscript>
+        <![endif]--><!--[if lte mso 11]>
+        <style type=3D"text/css">
+          .mj-outlook-group-fix { width:100% !important; }
+        </style>
+        <![endif]--><style>@media only screen and (min-width:480px) {
+        .mj-column-per-100 { width:100% !important; max-width: 100%; }
+      }</style><style media=3D"screen and (min-width:480px)">.moz-text-html=
+ .mj-column-per-100 { width:100% !important; max-width: 100%; }</style><sty=
+le>@media only screen and (max-width:480px) {
+      table.mj-full-width-mobile { width: 100% !important; }
+      td.mj-full-width-mobile { width: auto !important; }
+    }</style></head><body style=3D"word-spacing:normal;"><div style=3D"disp=
+lay:none;font-size:1px;color:#ffffff;line-height:1px;max-height:0px;max-wid=
+th:0px;opacity:0;overflow:hidden;">=F0=9F=94=A5 Europe & Ukraine draw a RED=
+ LINE for Putin Talks</div><div style=3D"max-width: 525px; margin: 0 auto; =
+text-align: center; padding: 0 4px 16px;" class=3D"emailBody"><table style=
+=3D"width:100%;" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" role=3D"p=
+resentation" align=3D"center"><tbody><tr><td><!--[if mso | IE]><table align=
+=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" rol=
+e=3D"presentation" style=3D"width:525px;" width=3D"525" ><tr><td style=3D"l=
+ine-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--><di=
+v style=3D"margin:0px auto;max-width:525px;"><table style=3D"width:100%;" c=
+ellpadding=3D"0" cellspacing=3D"0" border=3D"0" role=3D"presentation" align=
+=3D"center"><tbody><tr><td style=3D"direction:ltr;font-size:0px;padding:0px=
+;padding-bottom:24px;padding-top:16px;text-align:center;"><!--[if mso | IE]=
+><table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D=
+"0"><tr><td class=3D"centered-group-outlook" style=3D"width:525px;" ><![end=
+if]--><div style=3D"font-size: 0; line-height: 0; display: inline-block; wi=
+dth: 100%; direction: ltr; text-align: center;" class=3D"mj-column-per-100 =
+mj-outlook-group-fix centered-group"><!--[if mso | IE]><table border=3D"0" =
+cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" ><tr><td style=3D=
+"vertical-align:top;width:525px;" ><![endif]--><div style=3D"font-size:0px;=
+text-align:left;direction:ltr;display:inline-block;vertical-align:top;width=
+:100%;" class=3D"mj-column-per-100 mj-outlook-group-fix"><table style=3D"ve=
+rtical-align:top;" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" role=3D=
+"presentation" width=3D"100%"><tbody><tr><td style=3D"font-size:0px;padding=
+:0px;word-break:break-word;"><div style=3D"height:16px;line-height:16px;">=
+=E2=80=8A</div></td></tr><tr><td style=3D"font-size:0px;padding:0px;word-br=
+eak:break-word;" align=3D"center" class=3D"of-contain"><table style=3D"bord=
+er-collapse:collapse;border-spacing:0px;" cellpadding=3D"0" cellspacing=3D"=
+0" border=3D"0" role=3D"presentation"><tbody><tr><td style=3D"width:1px;"><=
+img alt height=3D"1" src=3D"https://www.quora.com/qemail/mark_read?ct=3D175=
+5945687731439&et=3D146&id=3D6828a03eaece4e16b4b2b9c1c8a967f8&notif_type=3D4=
+18&request_id=3D418&snid=3D89659746237&src=3D1&st=3D1755945687734835&storie=
+s=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+202891015)%2C+(%3Cstory_types=
+.tribe_post%3A+10%3E%2C+202966758)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2=
+C+203288696)%5D&tribe_item_ids=3Dflci6Tx78S%7CoiksDGhZ697%7CdpiQKUkahdH&uid=
+=3DzDMbfGON8KH&v=3D0" style=3D"object-fit: contain; border: 0; display: blo=
+ck; outline: none; text-decoration: none; height: 1px; width: 100%; font-si=
+ze: 13px;" width=3D"1"></td></tr></tbody></table></td></tr><tr><td style=3D=
+"font-size:0px;padding:0px;word-break:break-word;" align=3D"left"><div styl=
+e=3D"font-family:system-ui, Segoe UI, sans-serif;font-size:15px;line-height=
+:1.6;text-align:left;color:#333333;"><a href=3D"https://www.quora.com/qemai=
+l/track_click?aoid&aoty=3D7&aty=3D4&cp=3D12&ct=3D1755945687731439&et=3D146&=
+id=3D6828a03eaece4e16b4b2b9c1c8a967f8&notif_type=3D418&request_id=3D418&sni=
+d=3D89659746237&src=3D1&st=3D1755945687734835&stories=3D%5B(%3Cstory_types.=
+tribe_post%3A+10%3E%2C+202891015)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C=
++202966758)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+203288696)%5D&tribe_i=
+tem_ids=3Dflci6Tx78S%7CoiksDGhZ697%7CdpiQKUkahdH&uid=3DzDMbfGON8KH&v=3D0" s=
+tyle=3D"text-decoration:none"><div style=3D"width:100%;height:100px;overflo=
+w:hidden;border-radius:4px"><img alt=3D"THE BATTLE FOR UKRAINE" height=3D"1=
+00px" src=3D"https://qph.fs.quoracdn.net/main-custom-tc-2577896-1035x207-pq=
+defytwvdavdeejmslxgnnsnfgfntjs.jpeg" style=3D"text-decoration:none;display:=
+block;border:0;outline:none;width:100%;height:100px;float:none;padding:0;ma=
+rgin:auto;object-fit:cover;background-size:cover" align=3D"none" width=3D"1=
+00%"></div><div style=3D"padding-top:16px;padding-bottom:8px"><table><tr><t=
+d style=3D"line-height:1" valign=3D"top" width=3D"40"><img alt height=3D"50=
+" src=3D"https://qph.fs.quoracdn.net/main-thumb-ti-2577896-100-rouxeyjfkhbc=
+epubidtddhbuhepukcfe.jpeg" style=3D"border-radius:100%;vertical-align:cente=
+r;text-decoration:none;display:block;border:0;outline:none;width:50px;heigh=
+t:50px;float:none;padding:0;margin:auto" align=3D"none" width=3D"50"></td><=
+td style=3D"padding-left:8px" valign=3D"top"><div style=3D"padding:0;paddin=
+g-bottom:4px" dir=3D"ltr" class=3D"text-pass-color-to-links"><p style=3D"fo=
+nt-family: system-ui, Segoe UI, sans-serif; font-weight: bold; font-size: 1=
+9px; line-height: 1.2; color: #333333; text-align: left; margin: 0;">THE BA=
+TTLE FOR UKRAINE<span style=3D"color:gray;font-weight:normal;font-size:13px=
+"><span style=3D"color:#939598"> =E2=80=A2 </span>54.3K followers</span></p=
+></div><div style=3D"padding:0;padding-bottom:4px" dir=3D"ltr" class=3D"tex=
+t-pass-color-to-links"><p style=3D"font-family: system-ui, Segoe UI, sans-s=
+erif; font-size: 13px; line-height: 1.2; color: #333333; text-align: left; =
+margin: 0;">Stay up to date on the Russian invasion of Ukraine. This Space =
+has NO pay wall!!</p></div></td></tr></table></div></a></div></td></tr><tr>=
+<td style=3D"font-size:0px;padding:0px;padding-top:0px;padding-bottom:16px;=
+word-break:break-word;" align=3D"center"><p style=3D"border-top: solid 0.5p=
+x #dee0e1; font-size: 1px; width: 100%; margin: 0;"></p><!--[if mso | IE]><=
+table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" sty=
+le=3D"border-top:solid 0.5px #dee0e1;font-size:1px;margin:0px auto;width:52=
+5px;" role=3D"presentation" width=3D"525px" ><tr><td style=3D"height:0;line=
+-height:0;"> &nbsp;
+</td></tr></table><![endif]--></td></tr><tr><td style=3D"font-size:0px;padd=
+ing:0px;word-break:break-word;"><div style=3D"height:8px;line-height:8px;">=
+=E2=80=8A</div></td></tr><tr><td style=3D"font-size:0px;padding:0px;padding=
+-bottom:8px;word-break:break-word;" align=3D"left" class=3D"text-pass-color=
+-to-links"><div style=3D"font-family:system-ui, Segoe UI, sans-serif;font-s=
+ize:19px;font-weight:700;letter-spacing:-0.5px;line-height:1.4;text-align:l=
+eft;color:#333333;"><a href=3D"https://www.quora.com/qemail/track_click?al_=
+imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8MXwxMHwyMjk4ODI5ODUifQ%3D%3D&al_pri=
+=3D0&aoid=3DMFCP95A6f07&aoty=3D4&aty=3D4&cp=3D1&ct=3D1755945687731439&et=3D=
+146&id=3D6828a03eaece4e16b4b2b9c1c8a967f8&notif_type=3D418&request_id=3D418=
+&snid=3D89659746237&src=3D1&st=3D1755945687734835&stories=3D%5B(%3Cstory_ty=
+pes.tribe_post%3A+10%3E%2C+202891015)%2C+(%3Cstory_types.tribe_post%3A+10%3=
+E%2C+202966758)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+203288696)%5D&tri=
+be_item_ids=3Dflci6Tx78S%7CoiksDGhZ697%7CdpiQKUkahdH&uid=3DzDMbfGON8KH&v=3D=
+0" style=3D"text-decoration: none; color: inherit;"><span style=3D"color:#3=
+33333"><span></span></span></a></div></td></tr><tr><td style=3D"font-size:0=
+px;padding:0px;word-break:break-word;" align=3D"left"><div style=3D"font-fa=
+mily:system-ui, Segoe UI, sans-serif;font-size:15px;line-height:1.6;text-al=
+ign:left;color:#333333;"><div style=3D"float:left;padding-bottom:8px"><tabl=
+e><tr><td style=3D"line-height:1" valign=3D"top" width=3D"40"><a href=3D"ht=
+tps://www.quora.com/qemail/track_click?aoid=3Dz1HhzFzmCSm&aoty=3D3&aty=3D4&=
+cp=3D1&ct=3D1755945687731439&et=3D146&id=3D6828a03eaece4e16b4b2b9c1c8a967f8=
+&notif_type=3D418&request_id=3D418&snid=3D89659746237&src=3D1&st=3D17559456=
+87734835&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+202891015)%2C+=
+(%3Cstory_types.tribe_post%3A+10%3E%2C+202966758)%2C+(%3Cstory_types.tribe_=
+post%3A+10%3E%2C+203288696)%5D&tribe_item_ids=3Dflci6Tx78S%7CoiksDGhZ697%7C=
+dpiQKUkahdH&uid=3DzDMbfGON8KH&v=3D0" style=3D"text-decoration:underline"><i=
+mg alt=3D"Anna Magdalena W." height=3D"40" src=3D"https://qph.fs.quoracdn.n=
+et/main-thumb-45324860-50-fgdvoghfwscvqtyqphsysfkzlvbdvppj.jpeg" style=3D"b=
+order-radius:100%;text-decoration:none;display:block;border:0;outline:none;=
+width:40px;height:40px;float:none;padding:0;margin:auto" align=3D"none" wid=
+th=3D"40"></a></td><td width=3D"4"></td><td valign=3D"top"><div style=3D"pa=
+dding:0;padding-bottom:4px" dir=3D"ltr" class=3D"text-pass-color-to-links">=
+<p style=3D"font-family: system-ui, Segoe UI, sans-serif; font-size: 15px; =
+line-height: 1.2; color: #333333; text-align: left; margin: 0;"><a href=3D"=
+https://www.quora.com/qemail/track_click?aoid=3Dz1HhzFzmCSm&aoty=3D3&aty=3D=
+4&cp=3D1&ct=3D1755945687731439&et=3D146&id=3D6828a03eaece4e16b4b2b9c1c8a967=
+f8&notif_type=3D418&request_id=3D418&snid=3D89659746237&src=3D1&st=3D175594=
+5687734835&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+202891015)%2=
+C+(%3Cstory_types.tribe_post%3A+10%3E%2C+202966758)%2C+(%3Cstory_types.trib=
+e_post%3A+10%3E%2C+203288696)%5D&tribe_item_ids=3Dflci6Tx78S%7CoiksDGhZ697%=
+7CdpiQKUkahdH&uid=3DzDMbfGON8KH&v=3D0" style=3D"text-decoration: none; colo=
+r: inherit;"><span style=3D"color:#333333"><span style=3D"font-weight:700">=
+Anna Magdalena W.</span></span></a><span>, International Politics & Economy=
+ Analyst - LSE PhD</span></p></div><div style=3D"padding:0" dir=3D"ltr" cla=
+ss=3D"text-pass-color-to-links"><p style=3D"font-family: system-ui, Segoe U=
+I, sans-serif; font-size: 13px; line-height: 1.2; color: #939598; text-alig=
+n: left; margin: 0;"><a href=3D"https://www.quora.com/qemail/track_click?ao=
+id=3DMFCP95A6f07&aoty=3D4&aty=3D4&cp=3D1&ct=3D1755945687731439&et=3D146&id=
+=3D6828a03eaece4e16b4b2b9c1c8a967f8&notif_type=3D418&request_id=3D418&snid=
+=3D89659746237&src=3D1&st=3D1755945687734835&stories=3D%5B(%3Cstory_types.t=
+ribe_post%3A+10%3E%2C+202891015)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+=
+202966758)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+203288696)%5D&tribe_it=
+em_ids=3Dflci6Tx78S%7CoiksDGhZ697%7CdpiQKUkahdH&uid=3DzDMbfGON8KH&v=3D0" st=
+yle=3D"text-decoration: none; color: inherit;"><span style=3D"color:#636466=
+">Posted Aug 9</span></a></p></div></td></tr></table></div></div></td></tr>=
+<tr><td style=3D"font-size:0px;padding:0px;word-break:break-word;" align=3D=
+"left"><div style=3D"font-family:system-ui, Segoe UI, sans-serif;font-size:=
+15px;line-height:1.4;text-align:left;color:#333333;"><a href=3D"https://www=
+.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8MXwx=
+MHwyMjk4ODI5ODUifQ%3D%3D&al_pri=3D0&aoid=3DMFCP95A6f07&aoty=3D4&aty=3D4&cp=
+=3D1&ct=3D1755945687731439&et=3D146&id=3D6828a03eaece4e16b4b2b9c1c8a967f8&n=
+otif_type=3D418&request_id=3D418&snid=3D89659746237&src=3D1&st=3D1755945687=
+734835&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+202891015)%2C+(%=
+3Cstory_types.tribe_post%3A+10%3E%2C+202966758)%2C+(%3Cstory_types.tribe_po=
+st%3A+10%3E%2C+203288696)%5D&tribe_item_ids=3Dflci6Tx78S%7CoiksDGhZ697%7Cdp=
+iQKUkahdH&uid=3DzDMbfGON8KH&v=3D0" style=3D"text-decoration:none;color:#333=
+333"><span style=3D"color:#333333"><a href=3D"https://www.quora.com/qemail/=
+track_click?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8MXwxMHwyMjk4ODI5ODUifQ=
+%3D%3D&al_pri=3D8&aoid=3DMFCP95A6f07&aoty=3D4&aty=3D4&cp=3D1&ct=3D175594568=
+7731439&et=3D146&id=3D6828a03eaece4e16b4b2b9c1c8a967f8&notif_type=3D418&req=
+uest_id=3D418&snid=3D89659746237&src=3D1&st=3D1755945687734835&stories=3D%5=
+B(%3Cstory_types.tribe_post%3A+10%3E%2C+202891015)%2C+(%3Cstory_types.tribe=
+_post%3A+10%3E%2C+202966758)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+2032=
+88696)%5D&tribe_item_ids=3Dflci6Tx78S%7CoiksDGhZ697%7CdpiQKUkahdH&uid=3DzDM=
+bfGON8KH&v=3D0" style=3D"text-decoration:none;display:inline;color:#168de9"=
+><span style=3D"color:#168de9"><span> </span>Read more =C2=BB</span></a></s=
+pan></a></div></td></tr><tr><td style=3D"font-size:0px;padding:0px;word-bre=
+ak:break-word;" align=3D"left"><div style=3D"font-family:system-ui, Segoe U=
+I, sans-serif;font-size:15px;line-height:1.6;text-align:left;color:#333333;=
+"><div style=3D"padding-bottom:8px"><table style=3D"width:100%"><tr><td><a =
+href=3D"https://www.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMzMsI=
+CJoYXNoIjogIjB8MXwxMHwyMjk4ODI5ODUifQ%3D%3D&al_pri=3D0&aoid=3DMFCP95A6f07&a=
+oty=3D4&aty=3D4&cp=3D1&ct=3D1755945687731439&et=3D146&id=3D6828a03eaece4e16=
+b4b2b9c1c8a967f8&notif_type=3D418&request_id=3D418&snid=3D89659746237&src=
+=3D1&st=3D1755945687734835&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3E=
+%2C+202891015)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+202966758)%2C+(%3C=
+story_types.tribe_post%3A+10%3E%2C+203288696)%5D&tribe_item_ids=3Dflci6Tx78=
+S%7CoiksDGhZ697%7CdpiQKUkahdH&uid=3DzDMbfGON8KH&v=3D0" style=3D"text-decora=
+tion:none"><table style=3D"background-color:#fff;border-left:4px solid #e6e=
+7e8;border-collapse:separate;height:100%;margin-top:8px" cellpadding=3D"8" =
+cellspacing=3D"0" width=3D"100%"><tr><td style=3D"border-collapse:collapse;=
+padding-top:4px;padding-right:0;padding-bottom:4px;padding-left:12px"><div>=
+<div style=3D"padding:0" dir=3D"ltr"><p style=3D"font-family: system-ui, Se=
+goe UI, sans-serif; font-weight: 700; font-size: 15px; line-height: 1.6; co=
+lor: #333333; letter-spacing: -0.5px; text-align: left; margin: 0;"><span>=
+=F0=9F=94=A5 Europe & Ukraine draw a RED LINE for Putin Talks</span></p></d=
+iv><div style=3D"padding:0;display:inline" dir=3D"ltr"><p style=3D"font-fam=
+ily: system-ui, Segoe UI, sans-serif; font-size: 15px; line-height: 1.4; co=
+lor: #333333; text-align: left; display: inline; margin: 0;"><img alt heigh=
+t=3D"auto" src=3D"https://qph.fs.quoracdn.net/main-qimg-b6eca97066069d3938f=
+48e638d9c2502" style=3D"text-decoration:none;display:block;border:0;outline=
+:none;max-height:100px;max-width:200px;float:right;padding:0;padding-left:4=
+px;margin:auto" align=3D"right"></p><div style=3D"padding:0;padding-bottom:=
+16px;display:inline" dir=3D"ltr"><p style=3D"font-family: system-ui, Segoe =
+UI, sans-serif; font-size: 15px; line-height: 1.4; color: #333333; text-ali=
+gn: left; display: inline; margin: 0;"><span>Kyiv and its European allies h=
+ave just handed Washington a </span><span>negotiation plan</span><span> tha=
+t flips the script:</span></p></div><span> </span><div style=3D"padding:0;p=
+adding-bottom:16px;display:inline" dir=3D"ltr"><p style=3D"font-family: sys=
+tem-ui, Segoe UI, sans-serif; font-size: 15px; line-height: 1.4; color: #33=
+3333; text-align: left; display: inline; margin: 0;"><span>no talks until t=
+he guns go silent, no land given without land taken back, and ironclad secu=
+rity gua...</span></p></div><span> </span><p style=3D"margin: 0;"></p></div=
+><div style=3D"padding:0" dir=3D"ltr"><p style=3D"font-family: system-ui, S=
+egoe UI, sans-serif; font-size: 14px; line-height: 1.6; color: #939598; tex=
+t-align: left; margin: 0;"><a href=3D"https://www.quora.com/qemail/track_cl=
+ick?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8MXwxMHwyMjk4ODI5ODUifQ%3D%3D&a=
+l_pri=3D0&aoid=3DMFCP95A6f07&aoty=3D4&aty=3D4&cp=3D1&ct=3D1755945687731439&=
+et=3D146&id=3D6828a03eaece4e16b4b2b9c1c8a967f8&notif_type=3D418&request_id=
+=3D418&snid=3D89659746237&src=3D1&st=3D1755945687734835&stories=3D%5B(%3Cst=
+ory_types.tribe_post%3A+10%3E%2C+202891015)%2C+(%3Cstory_types.tribe_post%3=
+A+10%3E%2C+202966758)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+203288696)%=
+5D&tribe_item_ids=3Dflci6Tx78S%7CoiksDGhZ697%7CdpiQKUkahdH&uid=3DzDMbfGON8K=
+H&v=3D0" style=3D"text-decoration:none;color:#939598"><span style=3D"color:=
+#939598"><span style=3D"padding-right:8px">46 upvotes</span>9 comments</spa=
+n></a></p></div></div></td></tr></table></a></td></tr></table></div></div><=
+/td></tr><tr><td style=3D"font-size:0px;padding:0px;word-break:break-word;"=
+ align=3D"left"><div style=3D"font-family:system-ui, Segoe UI, sans-serif;f=
+ont-size:14px;line-height:1.6;text-align:left;color:#939598;"><a href=3D"ht=
+tps://www.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjo=
+gIjB8MXwxMHwyMjk4ODI5ODUifQ%3D%3D&al_pri=3D0&aoid=3DMFCP95A6f07&aoty=3D4&at=
+y=3D4&cp=3D1&ct=3D1755945687731439&et=3D146&id=3D6828a03eaece4e16b4b2b9c1c8=
+a967f8&notif_type=3D418&request_id=3D418&snid=3D89659746237&src=3D1&st=3D17=
+55945687734835&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+20289101=
+5)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+202966758)%2C+(%3Cstory_types.=
+tribe_post%3A+10%3E%2C+203288696)%5D&tribe_item_ids=3Dflci6Tx78S%7CoiksDGhZ=
+697%7CdpiQKUkahdH&uid=3DzDMbfGON8KH&v=3D0" style=3D"text-decoration:none;co=
+lor:#939598"><span style=3D"color:#939598"><span style=3D"padding-right:8px=
+">60 upvotes</span>6 comments</span></a></div></td></tr><tr><td style=3D"fo=
+nt-size:0px;padding:0px;word-break:break-word;"><div style=3D"height:16px;l=
+ine-height:16px;">=E2=80=8A</div></td></tr><tr><td style=3D"font-size:0px;p=
+adding:0px;padding-top:16px;padding-right:25%;padding-bottom:16px;padding-l=
+eft:25%;word-break:break-word;" align=3D"center"><p style=3D"border-top: so=
+lid 0.5px #dee0e1; font-size: 1px; width: 100%; margin: 0;"></p><!--[if mso=
+ | IE]><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" style=3D"border-top:solid 0.5px #dee0e1;font-size:1px;margin:0px aut=
+o;width:475px;" role=3D"presentation" width=3D"475px" ><tr><td style=3D"hei=
+ght:0;line-height:0;"> &nbsp;
+</td></tr></table><![endif]--></td></tr><tr><td style=3D"font-size:0px;padd=
+ing:0px;word-break:break-word;"><div style=3D"height:8px;line-height:8px;">=
+=E2=80=8A</div></td></tr><tr><td style=3D"font-size:0px;padding:0px;padding=
+-bottom:8px;word-break:break-word;" align=3D"left" class=3D"text-pass-color=
+-to-links"><div style=3D"font-family:system-ui, Segoe UI, sans-serif;font-s=
+ize:19px;font-weight:700;letter-spacing:-0.5px;line-height:1.4;text-align:l=
+eft;color:#333333;"><a href=3D"https://www.quora.com/qemail/track_click?al_=
+imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8MnwxMHwyMzAwMTQ0MzUifQ%3D%3D&al_pri=
+=3D0&aoid=3Do28amt6SLBx&aoty=3D4&aty=3D4&cp=3D2&ct=3D1755945687731439&et=3D=
+146&id=3D6828a03eaece4e16b4b2b9c1c8a967f8&notif_type=3D418&request_id=3D418=
+&snid=3D89659746237&src=3D1&st=3D1755945687734835&stories=3D%5B(%3Cstory_ty=
+pes.tribe_post%3A+10%3E%2C+202891015)%2C+(%3Cstory_types.tribe_post%3A+10%3=
+E%2C+202966758)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+203288696)%5D&tri=
+be_item_ids=3Dflci6Tx78S%7CoiksDGhZ697%7CdpiQKUkahdH&uid=3DzDMbfGON8KH&v=3D=
+0" style=3D"text-decoration: none; color: inherit;"><span style=3D"color:#3=
+33333"><span></span></span></a></div></td></tr><tr><td style=3D"font-size:0=
+px;padding:0px;word-break:break-word;" align=3D"left"><div style=3D"font-fa=
+mily:system-ui, Segoe UI, sans-serif;font-size:15px;line-height:1.6;text-al=
+ign:left;color:#333333;"><div style=3D"float:left;padding-bottom:8px"><tabl=
+e><tr><td style=3D"line-height:1" valign=3D"top" width=3D"40"><a href=3D"ht=
+tps://www.quora.com/qemail/track_click?aoid=3Dz1HhzFzmCSm&aoty=3D3&aty=3D4&=
+cp=3D2&ct=3D1755945687731439&et=3D146&id=3D6828a03eaece4e16b4b2b9c1c8a967f8=
+&notif_type=3D418&request_id=3D418&snid=3D89659746237&src=3D1&st=3D17559456=
+87734835&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+202891015)%2C+=
+(%3Cstory_types.tribe_post%3A+10%3E%2C+202966758)%2C+(%3Cstory_types.tribe_=
+post%3A+10%3E%2C+203288696)%5D&tribe_item_ids=3Dflci6Tx78S%7CoiksDGhZ697%7C=
+dpiQKUkahdH&uid=3DzDMbfGON8KH&v=3D0" style=3D"text-decoration:underline"><i=
+mg alt=3D"Anna Magdalena W." height=3D"40" src=3D"https://qph.fs.quoracdn.n=
+et/main-thumb-45324860-50-fgdvoghfwscvqtyqphsysfkzlvbdvppj.jpeg" style=3D"b=
+order-radius:100%;text-decoration:none;display:block;border:0;outline:none;=
+width:40px;height:40px;float:none;padding:0;margin:auto" align=3D"none" wid=
+th=3D"40"></a></td><td width=3D"4"></td><td valign=3D"top"><div style=3D"pa=
+dding:0;padding-bottom:4px" dir=3D"ltr" class=3D"text-pass-color-to-links">=
+<p style=3D"font-family: system-ui, Segoe UI, sans-serif; font-size: 15px; =
+line-height: 1.2; color: #333333; text-align: left; margin: 0;"><a href=3D"=
+https://www.quora.com/qemail/track_click?aoid=3Dz1HhzFzmCSm&aoty=3D3&aty=3D=
+4&cp=3D2&ct=3D1755945687731439&et=3D146&id=3D6828a03eaece4e16b4b2b9c1c8a967=
+f8&notif_type=3D418&request_id=3D418&snid=3D89659746237&src=3D1&st=3D175594=
+5687734835&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+202891015)%2=
+C+(%3Cstory_types.tribe_post%3A+10%3E%2C+202966758)%2C+(%3Cstory_types.trib=
+e_post%3A+10%3E%2C+203288696)%5D&tribe_item_ids=3Dflci6Tx78S%7CoiksDGhZ697%=
+7CdpiQKUkahdH&uid=3DzDMbfGON8KH&v=3D0" style=3D"text-decoration: none; colo=
+r: inherit;"><span style=3D"color:#333333"><span style=3D"font-weight:700">=
+Anna Magdalena W.</span></span></a><span>, International Politics & Economy=
+ Analyst - LSE PhD</span></p></div><div style=3D"padding:0" dir=3D"ltr" cla=
+ss=3D"text-pass-color-to-links"><p style=3D"font-family: system-ui, Segoe U=
+I, sans-serif; font-size: 13px; line-height: 1.2; color: #939598; text-alig=
+n: left; margin: 0;"><a href=3D"https://www.quora.com/qemail/track_click?ao=
+id=3Do28amt6SLBx&aoty=3D4&aty=3D4&cp=3D2&ct=3D1755945687731439&et=3D146&id=
+=3D6828a03eaece4e16b4b2b9c1c8a967f8&notif_type=3D418&request_id=3D418&snid=
+=3D89659746237&src=3D1&st=3D1755945687734835&stories=3D%5B(%3Cstory_types.t=
+ribe_post%3A+10%3E%2C+202891015)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+=
+202966758)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+203288696)%5D&tribe_it=
+em_ids=3Dflci6Tx78S%7CoiksDGhZ697%7CdpiQKUkahdH&uid=3DzDMbfGON8KH&v=3D0" st=
+yle=3D"text-decoration: none; color: inherit;"><span style=3D"color:#636466=
+">Posted Aug 11</span></a></p></div></td></tr></table></div></div></td></tr=
+><tr><td style=3D"font-size:0px;padding:0px;word-break:break-word;" align=
+=3D"left"><div style=3D"font-family:system-ui, Segoe UI, sans-serif;font-si=
+ze:15px;line-height:1.4;text-align:left;color:#333333;"><a href=3D"https://=
+www.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8M=
+nwxMHwyMzAwMTQ0MzUifQ%3D%3D&al_pri=3D0&aoid=3Do28amt6SLBx&aoty=3D4&aty=3D4&=
+cp=3D2&ct=3D1755945687731439&et=3D146&id=3D6828a03eaece4e16b4b2b9c1c8a967f8=
+&notif_type=3D418&request_id=3D418&snid=3D89659746237&src=3D1&st=3D17559456=
+87734835&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+202891015)%2C+=
+(%3Cstory_types.tribe_post%3A+10%3E%2C+202966758)%2C+(%3Cstory_types.tribe_=
+post%3A+10%3E%2C+203288696)%5D&tribe_item_ids=3Dflci6Tx78S%7CoiksDGhZ697%7C=
+dpiQKUkahdH&uid=3DzDMbfGON8KH&v=3D0" style=3D"text-decoration:none;color:#3=
+33333"><span style=3D"color:#333333"><a href=3D"https://www.quora.com/qemai=
+l/track_click?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8MnwxMHwyMzAwMTQ0MzUi=
+fQ%3D%3D&al_pri=3D8&aoid=3Do28amt6SLBx&aoty=3D4&aty=3D4&cp=3D2&ct=3D1755945=
+687731439&et=3D146&id=3D6828a03eaece4e16b4b2b9c1c8a967f8&notif_type=3D418&r=
+equest_id=3D418&snid=3D89659746237&src=3D1&st=3D1755945687734835&stories=3D=
+%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+202891015)%2C+(%3Cstory_types.tri=
+be_post%3A+10%3E%2C+202966758)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+20=
+3288696)%5D&tribe_item_ids=3Dflci6Tx78S%7CoiksDGhZ697%7CdpiQKUkahdH&uid=3Dz=
+DMbfGON8KH&v=3D0" style=3D"text-decoration:none;display:inline;color:#168de=
+9"><span style=3D"color:#168de9"><span> </span>Read more =C2=BB</span></a><=
+/span></a></div></td></tr><tr><td style=3D"font-size:0px;padding:0px;word-b=
+reak:break-word;" align=3D"left"><div style=3D"font-family:system-ui, Segoe=
+ UI, sans-serif;font-size:15px;line-height:1.6;text-align:left;color:#33333=
+3;"><div style=3D"padding-bottom:8px"><table style=3D"width:100%"><tr><td><=
+a href=3D"https://www.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMzM=
+sICJoYXNoIjogIjB8MnwxMHwyMzAwMTQ0MzUifQ%3D%3D&al_pri=3D0&aoid=3Do28amt6SLBx=
+&aoty=3D4&aty=3D4&cp=3D2&ct=3D1755945687731439&et=3D146&id=3D6828a03eaece4e=
+16b4b2b9c1c8a967f8&notif_type=3D418&request_id=3D418&snid=3D89659746237&src=
+=3D1&st=3D1755945687734835&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3E=
+%2C+202891015)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+202966758)%2C+(%3C=
+story_types.tribe_post%3A+10%3E%2C+203288696)%5D&tribe_item_ids=3Dflci6Tx78=
+S%7CoiksDGhZ697%7CdpiQKUkahdH&uid=3DzDMbfGON8KH&v=3D0" style=3D"text-decora=
+tion:none"><table style=3D"background-color:#fff;border-left:4px solid #e6e=
+7e8;border-collapse:separate;height:100%;margin-top:8px" cellpadding=3D"8" =
+cellspacing=3D"0" width=3D"100%"><tr><td style=3D"border-collapse:collapse;=
+padding-top:4px;padding-right:0;padding-bottom:4px;padding-left:12px"><div>=
+<div style=3D"padding:0;padding-bottom:4px" dir=3D"ltr" class=3D"text-pass-=
+color-to-links"><p style=3D"font-family: system-ui, Segoe UI, sans-serif; f=
+ont-weight: 700; font-size: 15px; line-height: 1.4; color: #333333; letter-=
+spacing: -0.5px; text-align: left; margin: 0;"><a href=3D"https://www.quora=
+.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8MnwxMHwyMz=
+AwMTQ0MzUifQ%3D%3D&al_pri=3D0&aoid=3Do28amt6SLBx&aoty=3D4&aty=3D4&cp=3D2&ct=
+=3D1755945687731439&et=3D146&id=3D6828a03eaece4e16b4b2b9c1c8a967f8&notif_ty=
+pe=3D418&request_id=3D418&snid=3D89659746237&src=3D1&st=3D1755945687734835&=
+stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+202891015)%2C+(%3Cstory=
+_types.tribe_post%3A+10%3E%2C+202966758)%2C+(%3Cstory_types.tribe_post%3A+1=
+0%3E%2C+203288696)%5D&tribe_item_ids=3Dflci6Tx78S%7CoiksDGhZ697%7CdpiQKUkah=
+dH&uid=3DzDMbfGON8KH&v=3D0" style=3D"text-decoration: none; color: inherit;=
+"><span style=3D"color:#333333"><span>JD Vance announced on Aug 10, 2025, t=
+hat the US is done with financing Ukraine's defense. What was he talking ab=
+out?</span></span></a></p></div><div style=3D"padding:0;display:inline" dir=
+=3D"ltr"><p style=3D"font-family: system-ui, Segoe UI, sans-serif; font-siz=
+e: 15px; line-height: 1.6; color: #333333; text-align: left; display: inlin=
+e; margin: 0;"><img alt height=3D"auto" src=3D"https://qph.fs.quoracdn.net/=
+main-qimg-5e766ed19de5cca1ee877dc77efdff5b" style=3D"text-decoration:none;d=
+isplay:block;border:0;outline:none;max-height:100px;max-width:200px;float:r=
+ight;padding:0;padding-left:4px;margin:auto" align=3D"right"></p><div style=
+=3D"padding:0;padding-bottom:16px;display:inline" dir=3D"ltr"><p style=3D"f=
+ont-family: system-ui, Segoe UI, sans-serif; font-size: 15px; line-height: =
+1.6; color: #333333; text-align: left; display: inline; margin: 0;"><span>Y=
+eah=E2=80=A6 he pushes</span><span> a false Ukraine aid narrative built on =
+a lie with which he aids Russia.</span></p></div><span> </span><div style=
+=3D"padding:0;padding-bottom:16px;display:inline" dir=3D"ltr"><p style=3D"f=
+ont-family: system-ui, Segoe UI, sans-serif; font-size: 15px; line-height: =
+1.6; color: #333333; text-align: left; display: inline; margin: 0;"><span>O=
+n Fox News, US Vice President </span><span>JD Vance</span><span> </span><sp=
+an style=3D"text-decoration:none">told </span><span>Americans they=E2=80=99=
+re =E2=80=9Ctired=E2=80=9D of paying for U...</span></p></div><span> </span=
+><p style=3D"margin: 0;"></p></div><div style=3D"padding:0" dir=3D"ltr"><p =
+style=3D"font-family: system-ui, Segoe UI, sans-serif; font-size: 14px; lin=
+e-height: 1.6; color: #939598; text-align: left; margin: 0;"><a href=3D"htt=
+ps://www.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjog=
+IjB8MnwxMHwyMzAwMTQ0MzUifQ%3D%3D&al_pri=3D0&aoid=3Do28amt6SLBx&aoty=3D4&aty=
+=3D4&cp=3D2&ct=3D1755945687731439&et=3D146&id=3D6828a03eaece4e16b4b2b9c1c8a=
+967f8&notif_type=3D418&request_id=3D418&snid=3D89659746237&src=3D1&st=3D175=
+5945687734835&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+202891015=
+)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+202966758)%2C+(%3Cstory_types.t=
+ribe_post%3A+10%3E%2C+203288696)%5D&tribe_item_ids=3Dflci6Tx78S%7CoiksDGhZ6=
+97%7CdpiQKUkahdH&uid=3DzDMbfGON8KH&v=3D0" style=3D"text-decoration:none;col=
+or:#939598"><span style=3D"color:#939598"><span style=3D"padding-right:8px"=
+>27 upvotes</span>10 comments</span></a></p></div></div></td></tr></table><=
+/a></td></tr></table></div></div></td></tr><tr><td style=3D"font-size:0px;p=
+adding:0px;word-break:break-word;" align=3D"left"><div style=3D"font-family=
+:system-ui, Segoe UI, sans-serif;font-size:14px;line-height:1.6;text-align:=
+left;color:#939598;"><a href=3D"https://www.quora.com/qemail/track_click?al=
+_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8MnwxMHwyMzAwMTQ0MzUifQ%3D%3D&al_pri=
+=3D0&aoid=3Do28amt6SLBx&aoty=3D4&aty=3D4&cp=3D2&ct=3D1755945687731439&et=3D=
+146&id=3D6828a03eaece4e16b4b2b9c1c8a967f8&notif_type=3D418&request_id=3D418=
+&snid=3D89659746237&src=3D1&st=3D1755945687734835&stories=3D%5B(%3Cstory_ty=
+pes.tribe_post%3A+10%3E%2C+202891015)%2C+(%3Cstory_types.tribe_post%3A+10%3=
+E%2C+202966758)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+203288696)%5D&tri=
+be_item_ids=3Dflci6Tx78S%7CoiksDGhZ697%7CdpiQKUkahdH&uid=3DzDMbfGON8KH&v=3D=
+0" style=3D"text-decoration:none;color:#939598"><span style=3D"color:#93959=
+8"><span style=3D"padding-right:8px">24 upvotes</span>9 comments</span></a>=
+</div></td></tr><tr><td style=3D"font-size:0px;padding:0px;word-break:break=
+-word;"><div style=3D"height:16px;line-height:16px;">=E2=80=8A</div></td></=
+tr><tr><td style=3D"font-size:0px;padding:0px;padding-top:16px;padding-righ=
+t:25%;padding-bottom:16px;padding-left:25%;word-break:break-word;" align=3D=
+"center"><p style=3D"border-top: solid 0.5px #dee0e1; font-size: 1px; width=
+: 100%; margin: 0;"></p><!--[if mso | IE]><table align=3D"center" border=3D=
+"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"border-top:solid 0.5px #de=
+e0e1;font-size:1px;margin:0px auto;width:475px;" role=3D"presentation" widt=
+h=3D"475px" ><tr><td style=3D"height:0;line-height:0;"> &nbsp;
+</td></tr></table><![endif]--></td></tr><tr><td style=3D"font-size:0px;padd=
+ing:0px;word-break:break-word;"><div style=3D"height:8px;line-height:8px;">=
+=E2=80=8A</div></td></tr><tr><td style=3D"font-size:0px;padding:0px;padding=
+-bottom:8px;word-break:break-word;" align=3D"left" class=3D"text-pass-color=
+-to-links"><div style=3D"font-family:system-ui, Segoe UI, sans-serif;font-s=
+ize:19px;font-weight:700;letter-spacing:-0.5px;line-height:1.4;text-align:l=
+eft;color:#333333;"><a href=3D"https://www.quora.com/qemail/track_click?al_=
+imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8M3wxMHwyMzA2MDE2MzcifQ%3D%3D&al_pri=
+=3D0&aoid=3DqqXcs73y3Am&aoty=3D4&aty=3D4&cp=3D3&ct=3D1755945687731439&et=3D=
+146&id=3D6828a03eaece4e16b4b2b9c1c8a967f8&notif_type=3D418&request_id=3D418=
+&snid=3D89659746237&src=3D1&st=3D1755945687734835&stories=3D%5B(%3Cstory_ty=
+pes.tribe_post%3A+10%3E%2C+202891015)%2C+(%3Cstory_types.tribe_post%3A+10%3=
+E%2C+202966758)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+203288696)%5D&tri=
+be_item_ids=3Dflci6Tx78S%7CoiksDGhZ697%7CdpiQKUkahdH&uid=3DzDMbfGON8KH&v=3D=
+0" style=3D"text-decoration: none; color: inherit;"><span style=3D"color:#3=
+33333"><span></span></span></a></div></td></tr><tr><td style=3D"font-size:0=
+px;padding:0px;word-break:break-word;" align=3D"left"><div style=3D"font-fa=
+mily:system-ui, Segoe UI, sans-serif;font-size:15px;line-height:1.6;text-al=
+ign:left;color:#333333;"><div style=3D"float:left;padding-bottom:8px"><tabl=
+e><tr><td style=3D"line-height:1" valign=3D"top" width=3D"40"><a href=3D"ht=
+tps://www.quora.com/qemail/track_click?aoid=3DdJwrx1aaN5j&aoty=3D3&aty=3D4&=
+cp=3D3&ct=3D1755945687731439&et=3D146&id=3D6828a03eaece4e16b4b2b9c1c8a967f8=
+&notif_type=3D418&request_id=3D418&snid=3D89659746237&src=3D1&st=3D17559456=
+87734835&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+202891015)%2C+=
+(%3Cstory_types.tribe_post%3A+10%3E%2C+202966758)%2C+(%3Cstory_types.tribe_=
+post%3A+10%3E%2C+203288696)%5D&tribe_item_ids=3Dflci6Tx78S%7CoiksDGhZ697%7C=
+dpiQKUkahdH&uid=3DzDMbfGON8KH&v=3D0" style=3D"text-decoration:underline"><i=
+mg alt=3D"Emmanuel Ikechukwu" height=3D"40" src=3D"https://qph.fs.quoracdn.=
+net/main-thumb-281601915-50-cpbronmlchhosdzttmorufvvfiarkhje.jpeg" style=3D=
+"border-radius:100%;text-decoration:none;display:block;border:0;outline:non=
+e;width:40px;height:40px;float:none;padding:0;margin:auto" align=3D"none" w=
+idth=3D"40"></a></td><td width=3D"4"></td><td valign=3D"top"><div style=3D"=
+padding:0;padding-bottom:4px" dir=3D"ltr" class=3D"text-pass-color-to-links=
+"><p style=3D"font-family: system-ui, Segoe UI, sans-serif; font-size: 15px=
+; line-height: 1.2; color: #333333; text-align: left; margin: 0;"><a href=
+=3D"https://www.quora.com/qemail/track_click?aoid=3DdJwrx1aaN5j&aoty=3D3&at=
+y=3D4&cp=3D3&ct=3D1755945687731439&et=3D146&id=3D6828a03eaece4e16b4b2b9c1c8=
+a967f8&notif_type=3D418&request_id=3D418&snid=3D89659746237&src=3D1&st=3D17=
+55945687734835&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+20289101=
+5)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+202966758)%2C+(%3Cstory_types.=
+tribe_post%3A+10%3E%2C+203288696)%5D&tribe_item_ids=3Dflci6Tx78S%7CoiksDGhZ=
+697%7CdpiQKUkahdH&uid=3DzDMbfGON8KH&v=3D0" style=3D"text-decoration: none; =
+color: inherit;"><span style=3D"color:#333333"><span style=3D"font-weight:7=
+00">Emmanuel Ikechukwu</span></span></a><span>, Uplifting humanity and repo=
+rting Putin=E2=80=99s evil in Ukraine</span></p></div><div style=3D"padding=
+:0" dir=3D"ltr" class=3D"text-pass-color-to-links"><p style=3D"font-family:=
+ system-ui, Segoe UI, sans-serif; font-size: 13px; line-height: 1.2; color:=
+ #939598; text-align: left; margin: 0;"><a href=3D"https://www.quora.com/qe=
+mail/track_click?aoid=3DqqXcs73y3Am&aoty=3D4&aty=3D4&cp=3D3&ct=3D1755945687=
+731439&et=3D146&id=3D6828a03eaece4e16b4b2b9c1c8a967f8&notif_type=3D418&requ=
+est_id=3D418&snid=3D89659746237&src=3D1&st=3D1755945687734835&stories=3D%5B=
+(%3Cstory_types.tribe_post%3A+10%3E%2C+202891015)%2C+(%3Cstory_types.tribe_=
+post%3A+10%3E%2C+202966758)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+20328=
+8696)%5D&tribe_item_ids=3Dflci6Tx78S%7CoiksDGhZ697%7CdpiQKUkahdH&uid=3DzDMb=
+fGON8KH&v=3D0" style=3D"text-decoration: none; color: inherit;"><span style=
+=3D"color:#636466">Posted Tue</span></a></p></div></td></tr></table></div><=
+/div></td></tr><tr><td style=3D"font-size:0px;padding:0px;word-break:break-=
+word;" align=3D"left"><div style=3D"font-family:system-ui, Segoe UI, sans-s=
+erif;font-size:15px;line-height:1.4;text-align:left;color:#333333;"><a href=
+=3D"https://www.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMzMsICJoY=
+XNoIjogIjB8M3wxMHwyMzA2MDE2MzcifQ%3D%3D&al_pri=3D0&aoid=3DqqXcs73y3Am&aoty=
+=3D4&aty=3D4&cp=3D3&ct=3D1755945687731439&et=3D146&id=3D6828a03eaece4e16b4b=
+2b9c1c8a967f8&notif_type=3D418&request_id=3D418&snid=3D89659746237&src=3D1&=
+st=3D1755945687734835&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+2=
+02891015)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+202966758)%2C+(%3Cstory=
+_types.tribe_post%3A+10%3E%2C+203288696)%5D&tribe_item_ids=3Dflci6Tx78S%7Co=
+iksDGhZ697%7CdpiQKUkahdH&uid=3DzDMbfGON8KH&v=3D0" style=3D"text-decoration:=
+none;color:#333333"><span style=3D"color:#333333"><img alt height=3D"auto" =
+src=3D"https://qph.fs.quoracdn.net/main-qimg-61badacf67d538b2ebca854caa4183=
+ee" style=3D"text-decoration:none;display:block;border:0;outline:none;max-h=
+eight:100px;max-width:200px;float:right;padding:0;padding-left:4px;margin:a=
+uto" align=3D"right"><div style=3D"padding:0;padding-bottom:16px;display:in=
+line" dir=3D"ltr"><p style=3D"font-family: system-ui, Segoe UI, sans-serif;=
+ font-size: 15px; line-height: 1.4; color: #333333; text-align: left; displ=
+ay: inline; margin: 0;"><span>=E2=80=9CZelenskyy SCORES a powerful point=E2=
+=80=94gifts Trump a war-hero=E2=80=99s golf club=E2=80=9D</span></p></div><=
+span> </span><div style=3D"padding:0;padding-bottom:16px;display:inline" di=
+r=3D"ltr"><p style=3D"font-family: system-ui, Segoe UI, sans-serif; font-si=
+ze: 15px; line-height: 1.4; color: #333333; text-align: left; display: inli=
+ne; margin: 0;"><span>Ukraine=E2=80=99s president stepped up the diplomacy =
+with a move straight from the heart: Zelensky presented Donald Trump with a=
+ golf c...</span></p></div><span> </span><a href=3D"https://www.quora.com/q=
+email/track_click?al_imp=3DeyJ0eXBlIjogMzMsICJoYXNoIjogIjB8M3wxMHwyMzA2MDE2=
+MzcifQ%3D%3D&al_pri=3D8&aoid=3DqqXcs73y3Am&aoty=3D4&aty=3D4&cp=3D3&ct=3D175=
+5945687731439&et=3D146&id=3D6828a03eaece4e16b4b2b9c1c8a967f8&notif_type=3D4=
+18&request_id=3D418&snid=3D89659746237&src=3D1&st=3D1755945687734835&storie=
+s=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+202891015)%2C+(%3Cstory_types=
+.tribe_post%3A+10%3E%2C+202966758)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2=
+C+203288696)%5D&tribe_item_ids=3Dflci6Tx78S%7CoiksDGhZ697%7CdpiQKUkahdH&uid=
+=3DzDMbfGON8KH&v=3D0" style=3D"text-decoration:none;display:inline;color:#1=
+68de9"><span style=3D"color:#168de9">Read more =C2=BB</span></a></span></a>=
+</div></td></tr><tr><td style=3D"font-size:0px;padding:0px;word-break:break=
+-word;" align=3D"left"><div style=3D"font-family:system-ui, Segoe UI, sans-=
+serif;font-size:14px;line-height:1.6;text-align:left;color:#939598;"><a hre=
+f=3D"https://www.quora.com/qemail/track_click?al_imp=3DeyJ0eXBlIjogMzMsICJo=
+YXNoIjogIjB8M3wxMHwyMzA2MDE2MzcifQ%3D%3D&al_pri=3D0&aoid=3DqqXcs73y3Am&aoty=
+=3D4&aty=3D4&cp=3D3&ct=3D1755945687731439&et=3D146&id=3D6828a03eaece4e16b4b=
+2b9c1c8a967f8&notif_type=3D418&request_id=3D418&snid=3D89659746237&src=3D1&=
+st=3D1755945687734835&stories=3D%5B(%3Cstory_types.tribe_post%3A+10%3E%2C+2=
+02891015)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+202966758)%2C+(%3Cstory=
+_types.tribe_post%3A+10%3E%2C+203288696)%5D&tribe_item_ids=3Dflci6Tx78S%7Co=
+iksDGhZ697%7CdpiQKUkahdH&uid=3DzDMbfGON8KH&v=3D0" style=3D"text-decoration:=
+none;color:#939598"><span style=3D"color:#939598"><span style=3D"padding-ri=
+ght:8px">20 upvotes</span>4 comments</span></a></div></td></tr><tr><td styl=
+e=3D"font-size:0px;padding:0px;word-break:break-word;"><div style=3D"height=
+:16px;line-height:16px;">=E2=80=8A</div></td></tr><tr><td style=3D"font-siz=
+e:0px;padding:0px;padding-top:24px;padding-bottom:32px;word-break:break-wor=
+d;" align=3D"center" vertical-align=3D"middle"><table style=3D"border-colla=
+pse:separate;line-height:100%;" cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0" role=3D"presentation"><tbody><tr><td style=3D"border:1px solid null;=
+border-radius:25px;cursor:auto;height:50px;mso-padding-alt:8px 32px;backgro=
+und:#2e69ff;" align=3D"center" bgcolor=3D"#2e69ff" role=3D"presentation" va=
+lign=3D"middle"><a href=3D"https://thebattleforukraine.quora.com" style=3D"=
+display:inline-block;background:#2e69ff;color:#ffffff;font-family:system-ui=
+, Segoe UI, sans-serif;font-size:14px;font-weight:500;line-height:120%;marg=
+in:0;text-decoration:none;text-transform:none;padding:8px 32px;mso-padding-=
+alt:0px;border-radius:25px;" target=3D"_blank">Read more in THE BATTLE FOR =
+UKRAINE</a></td></tr></tbody></table></td></tr></tbody></table></div><!--[i=
+f mso | IE]></td></tr></table><![endif]--></div><!--[if mso | IE]></td></tr=
+></table><![endif]--></td></tr></tbody></table></div><!--[if mso | IE]></td=
+></tr></table><![endif]--></td></tr></tbody></table><table style=3D"width:1=
+00%;" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" role=3D"presentation=
+" align=3D"center"><tbody><tr><td><!--[if mso | IE]><table align=3D"center"=
+ border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" role=3D"presen=
+tation" style=3D"width:525px;" width=3D"525" ><tr><td style=3D"line-height:=
+0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--><div style=3D"=
+margin:0px auto;max-width:525px;"><table style=3D"width:100%;" cellpadding=
+=3D"0" cellspacing=3D"0" border=3D"0" role=3D"presentation" align=3D"center=
+"><tbody><tr><td style=3D"direction:ltr;font-size:0px;padding:24px;padding-=
+left:0px;padding-right:0px;padding-top:0px;text-align:center;"><!--[if mso =
+| IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0"><tr><td class=3D"" style=3D"vertical-align:top;width:525px;" ><![e=
+ndif]--><div style=3D"font-size:0px;text-align:left;direction:ltr;display:i=
+nline-block;vertical-align:top;width:100%;" class=3D"mj-column-per-100 mj-o=
+utlook-group-fix"><table style=3D"vertical-align:top;" cellpadding=3D"0" ce=
+llspacing=3D"0" border=3D"0" role=3D"presentation" width=3D"100%"><tbody><t=
+r><td style=3D"font-size:0px;padding:0px;padding-top:0px;padding-bottom:16p=
+x;word-break:break-word;" align=3D"center"><p style=3D"border-top: solid 0.=
+5px #dee0e1; font-size: 1px; width: 100%; margin: 0;"></p><!--[if mso | IE]=
+><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" s=
+tyle=3D"border-top:solid 0.5px #dee0e1;font-size:1px;margin:0px auto;width:=
+525px;" role=3D"presentation" width=3D"525px" ><tr><td style=3D"height:0;li=
+ne-height:0;"> &nbsp;
+</td></tr></table><![endif]--></td></tr><tr><td style=3D"font-size:0px;padd=
+ing:0px;padding-top:16px;padding-bottom:8px;word-break:break-word;" align=
+=3D"center" class=3D"text-pass-color-to-links"><div style=3D"font-family:sy=
+stem-ui, Segoe UI, sans-serif;font-size:11px;line-height:1.6;text-align:cen=
+ter;color:#939598;">This email was sent by Quora (605 Castro Street, Mounta=
+in View, CA 94041).<br>You were sent this email because you are following <=
+a href=3D"https://thebattleforukraine.quora.com" style=3D"text-decoration: =
+underline; color: inherit;">THE BATTLE FOR UKRAINE</a>. If you don't want t=
+hese updates anymore, you can <a href=3D"https://www.quora.com/qemail/track=
+_click?aoid=3Doyte4a45lHH&aoty=3D24&aty=3D12&cp=3D10&ct=3D1755945687731439&=
+et=3D146&id=3D6828a03eaece4e16b4b2b9c1c8a967f8&notif_type=3D418&request_id=
+=3D418&snid=3D89659746237&src=3D1&st=3D1755945687734835&stories=3D%5B(%3Cst=
+ory_types.tribe_post%3A+10%3E%2C+202891015)%2C+(%3Cstory_types.tribe_post%3=
+A+10%3E%2C+202966758)%2C+(%3Cstory_types.tribe_post%3A+10%3E%2C+203288696)%=
+5D&tribe_item_ids=3Dflci6Tx78S%7CoiksDGhZ697%7CdpiQKUkahdH&uid=3DzDMbfGON8K=
+H&v=3D0" style=3D"text-decoration: underline; color: inherit;">unfollow THE=
+ BATTLE FOR UKRAINE</a> or <a href=3D"https://www.quora.com/email_optout/qe=
+mail_unsubscribe?email_track_id=3D6828a03eaece4e16b4b2b9c1c8a967f8&t=3D1755=
+945687819916&token=3D47491a392a50b4baeab133f16e67d4512ba01b708d780ecc17a1bf=
+bf19c5cae520aa3a8623f39eb5565ccb173652f0f475a8c7777a8e4a686a6a658c219f30fd&=
+type=3D146&uid=3D189974078" style=3D"text-decoration: underline; color: inh=
+erit;">unsubscribe</a>.</div></td></tr><tr><td style=3D"font-size:0px;paddi=
+ng:0px;word-break:break-word;" align=3D"center" class=3D"text-pass-color-to=
+-links"><div style=3D"font-family:system-ui, Segoe UI, sans-serif;font-size=
+:11px;line-height:1.6;text-align:center;color:#939598;"><a href=3D"https://=
+www.quora.com" style=3D"text-decoration: underline; color: inherit;">https:=
+//www.quora.com</a></div></td></tr></tbody></table></div><!--[if mso | IE]>=
+</td></tr></table><![endif]--></td></tr></tbody></table></div><!--[if mso |=
+ IE]></td></tr></table><![endif]--></td></tr></tbody></table></div></body><=
+/html>
+--===============9129233188577730311==--
