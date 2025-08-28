@@ -39,9 +39,9 @@ public class AntiSpamMailet extends GenericMailet {
       Arrays.asList("66.196.64.0/18", "68.142.192.0/18", "72.30.0.0/16"), "domain.com", Arrays.asList("127.0.0.1"));
   /*
  * @formatter:off
- * DNs Host             score
-   zen.spamhaus.org       5
-   bl.spamcop.net         3
+ *  DNs Host             score
+ v  zen.spamhaus.org       5
+ v  bl.spamcop.net         3
    dnsbl.njabl.org        1
    psbl.surriel.com       1
    virbl.dnsbl.bit.nl     1
@@ -63,6 +63,10 @@ public class AntiSpamMailet extends GenericMailet {
         "bl.spamcop.net," + 
         "dnsbl.sorbs.net," + 
         "spam.dnsbl.sorbs.net," + 
+        "dnsbl.njabl.org," +
+        "psbl.surriel.com," +
+        "virbl.dnsbl.bit.nl," +
+        "b.barracudacentral.org," +
         "bl.blocklist.de")
         .split(","));
 
@@ -81,7 +85,8 @@ public class AntiSpamMailet extends GenericMailet {
         "loan:0.6," +
         "free:0.5," +
         "money:0.6," + 
-        "profit:0.5" );
+        "profit:0.5" +
+        "Save Up To:0.5" );
     //@formatter:on
     Arrays.stream(keywordsConfig.split(",")).forEach(kv -> {
       String[] parts = kv.split(":");
@@ -96,9 +101,9 @@ public class AntiSpamMailet extends GenericMailet {
 
   @Override
   public void service(Mail mail) throws MessagingException {
-
+    double probability = 0.0;
     try {
-      double probability = calculateSpamProbability(mail);
+      probability = calculateSpamProbability(mail);
       setSpamHeaders(mail, probability);
 
       if (probability >= spamThreshold) {
@@ -106,6 +111,7 @@ public class AntiSpamMailet extends GenericMailet {
       }
     } catch (Exception e) {
       LOGGER.info("AntiSpam processing error for mail " + mail.getName() + ": " + e.getMessage());
+      setSpamHeaders(mail, probability);
     }
   }
 
@@ -116,18 +122,24 @@ public class AntiSpamMailet extends GenericMailet {
     if (checkDNSBL(mail)) {
       probability += 0.3;
       setHeader(mail, "X-DNSBL-Hit", "true");
+    } else {
+      setHeader(mail, "X-DNSBL-Hit", "false");
     }
 
     // SPF check (20% weight)
     if (checkSPF(mail)) {
       probability += 0.2;
       setHeader(mail, "X-SPF-Fail", "true");
+    } else {
+      setHeader(mail, "X-SPF-Fail", "false");
     }
 
     // Greylisting (10% weight)
     if (greylistingEnabled && checkGreyList(mail)) {
       probability += 0.1;
       setHeader(mail, "X-Greylist", "NEW");
+    } else {
+      setHeader(mail, "X-Greylist", "-");
     }
 
     // Content analysis (40% weight)
@@ -135,6 +147,8 @@ public class AntiSpamMailet extends GenericMailet {
     if (contentScore > 0) {
       probability += Math.min(0.4, contentScore);
       setHeader(mail, "X-Spam-Content-Score", String.format("%.2f", contentScore));
+    } else {
+      setHeader(mail, "X-Spam-Content-Score", String.format("%.2f", 0.0));
     }
 
     return Math.min(1.0, probability);
@@ -158,7 +172,7 @@ public class AntiSpamMailet extends GenericMailet {
         boolean isListed = records != null && records.length > 0;
 
         if (isListed) {
-          LOGGER.info("DNSBL hit: " + server + " for IP: " + ip);
+          LOGGER.debug("DNSBL hit: " + server + " for IP: " + ip);
           setHeader(mail, "X-DNSBL-Server", server);
         }
 
@@ -194,11 +208,16 @@ public class AntiSpamMailet extends GenericMailet {
     String sender = mail.getMaybeSender().asString();
     String triplet = mail.getRemoteAddr() + "|" + sender + "|" + recipient;
 
-    return greyListCache.get(triplet, k -> {
-      greyListCache.put(triplet, false);
-      LOGGER.info("Greylist new triplet: " + triplet);
-      return true;
-    });
+    // Check if triplet exists first
+    Boolean cachedValue = greyListCache.getIfPresent(triplet);
+    if (cachedValue != null) {
+      return cachedValue;
+    }
+
+    // If not present, add it and return true (new triplet)
+    greyListCache.put(triplet, false);
+    LOGGER.debug("Greylist new triplet: " + triplet);
+    return true;
   }
 
   private double calculateContentScore(Mail mail) throws MessagingException, IOException {
@@ -212,7 +231,7 @@ public class AntiSpamMailet extends GenericMailet {
 
     return spamKeywords.entrySet().stream().filter(entry -> finalContent.contains(entry.getKey()))
         .mapToDouble(entry -> {
-          LOGGER.info("Spam keyword detected: " + entry.getKey());
+          LOGGER.debug("Spam keyword detected: " + entry.getKey());
           return entry.getValue();
         }).sum();
   }

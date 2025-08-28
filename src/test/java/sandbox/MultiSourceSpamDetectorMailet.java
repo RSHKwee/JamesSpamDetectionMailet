@@ -54,13 +54,13 @@ public class MultiSourceSpamDetectorMailet extends GenericMailet {
       // Controleer op SpamAssassin GTUBE-pattern
       if (content.contains(GTUBE)) {
         markAsSpam(mail, "GTUBE spam pattern detected");
-        return;
+        // return;
       }
 
       // Controleer Threat Intelligence API
       if (checkThreatIntel(senderIp)) {
         markAsSpam(mail, "Blacklisted by threat intelligence: " + senderIp);
-        return;
+        // return;
       }
 
       // Bayes-spamfilter toepassen

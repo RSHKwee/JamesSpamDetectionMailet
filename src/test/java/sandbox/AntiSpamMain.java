@@ -1,29 +1,26 @@
 package sandbox;
 
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 import org.apache.james.mailets.Kwee.AntiSpamMailet;
+import org.apache.james.mailets.Kwee.library.MimeMsgsTarBz2Archive;
+
 import org.apache.mailet.Mail;
 import org.apache.mailet.MailetContext;
 import org.apache.mailet.base.test.FakeMail;
 import org.apache.mailet.base.test.FakeMailetConfig;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.apache.james.mailets.Kwee.library.MimeMsgsTarBz2Archive;
-
-public class Main {
-  private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
+public class AntiSpamMain {
+  private static final Logger LOGGER = LoggerFactory.getLogger(AntiSpamMain.class);
   private static int teller = 0;
 
   public static void main(String[] args) throws IOException {
@@ -37,9 +34,17 @@ public class Main {
     mailetConfig = FakeMailetConfig.builder()
         .mailetName("AntiSpamMailet")
         .mailetContext(mailetContext)
-        .setProperty("dnsbl.server", "zen.spamhaus.org,bl.spamcop.net")
-        .setProperty("greylisting.enabled", "false")
-
+        .setProperty("dnsbl.server", 
+            "zen.spamhaus.org," +
+            "bl.spamcop.net," +
+            "dnsbl.sorbs.net," + 
+            "spam.dnsbl.sorbs.net," + 
+            "dnsbl.njabl.org," +
+            "psbl.surriel.com," +
+            "virbl.dnsbl.bit.nl," +
+            "b.barracudacentral.org," +
+            "bl.blocklist.de")       
+        .setProperty("greylisting.enabled", "true")
         .build();
     try {
       //@formatter:on
