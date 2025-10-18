@@ -70,7 +70,7 @@ public class MultiSourceSpamDetectorMailet extends GenericMailet {
       }
 
     } catch (Exception e) {
-      LOGGER.info("Error processing mail: " + mail.getName() + " - " + e.getMessage());
+      LOGGER.error("Error processing mail: " + mail.getName() + " - " + e.getMessage());
       // In productie: foutenlogboek bijhouden
     }
   }
@@ -116,7 +116,7 @@ public class MultiSourceSpamDetectorMailet extends GenericMailet {
   }
 
   private void markAsSpam(Mail mail, String reason) throws MessagingException {
-    LOGGER.info("Marking mail as spam: " + mail.getName() + " - Reason: " + reason);
+    LOGGER.debug("Marking mail as spam: " + mail.getName() + " - Reason: " + reason);
     mail.setAttribute("SPAM_REASON", reason);
 
     // Stuur door naar quarantaine of spamfolder
